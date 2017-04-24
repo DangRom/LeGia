@@ -1,0 +1,101 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>LeGia - Admin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/admin/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/StyleSheet.css">
+
+    <!-- Add custom CSS here -->
+    <link href="~/admin/css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/admin/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">LeGia Admin</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li><a href="/admin/dashboard"><i class="fa fa-info"></i> Công ty</a></li>
+                    
+                    <li class="dropdown">
+                        @*<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Dropdown <b class="caret"></b></a>*@
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book"></i> Danh mục chủ đề <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Danh sách</a></li>
+                            <li><a href="#">Thêm mới</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-clipboard"></i> Danh mục bài viết <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Danh sách</a></li>
+                            <li><a href="#">Thêm mới</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-code-fork"></i> Dự án <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Danh sách</a></li>
+                            <li><a href="#">Thêm mới</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html"><i class="fa fa-slideshare"></i> Slide </a></li>
+                    <li><a href="index.html"><i class="fa fa-users"></i> Khách hàng</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right navbar-user">
+                    <li class="dropdown user-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="fa fa-key"></i> Đổi mật khẩu</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="row">
+                @RenderBody()
+            </div><!-- /.row -->
+
+        </div><!-- /#page-wrapper -->
+    </div><!-- /#wrapper -->
+    <!-- JavaScript -->
+    <script src="~/admin/js/jquery-1.10.2.js"></script>
+    <script src="~/admin/js/bootstrap.js"></script>
+
+    <!-- Page Specific Plugins -->
+    <script src="~/admin/js/tablesorter/jquery.tablesorter.js"></script>
+    <script src="~/admin/js/tablesorter/tables.js"></script>
+    <script src="~/admin/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script src="~/admin/tinymce/js/tinymce/jquery.tinymce.min.js"></script>
+    <script src="~/admin/tinymce/js/tinyconfig.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
