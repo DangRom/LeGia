@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LeGia.Areas.Controllers
 {
-    public class DashboarController : Controller
+    [Area("Admin")]
+    public class DashboardController : Controller
     {
         public IActionResult Index()
         {
