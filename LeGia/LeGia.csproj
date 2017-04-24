@@ -147,6 +147,7 @@
     <Content Include="wwwroot\admin\tinymce\js\tinymce\tinymce.min.js" />
     <Content Include="wwwroot\admin\tinymce\LICENSE.TXT" />
     <Content Include="wwwroot\css\StyleSheet.css" />
+    <Content Include="wwwroot\js\datatable_config.js" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GitForWindows" Version="2.12.2.2" />

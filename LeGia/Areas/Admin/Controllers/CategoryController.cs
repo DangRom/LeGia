@@ -13,5 +13,10 @@ namespace LeGia.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public IActionResult New()
+        {
+            return View();
+        }
     }
 }

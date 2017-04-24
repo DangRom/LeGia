@@ -1,3 +1,9 @@
 ﻿.height-input {
     height: 25px
 }
+
+.height-input-button-grid {
+    height: 20px;
+    padding: initial;
+    padding-top: -5px;
+}
