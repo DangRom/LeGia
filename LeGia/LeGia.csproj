@@ -173,7 +173,6 @@
     <Folder Include="Areas\Admin\Views\Post\" />
     <Folder Include="Models\" />
     <Folder Include="Services\IRepository\" />
-    <Folder Include="Services\Model\" />
     <Folder Include="Services\Repository\" />
   </ItemGroup>
 
