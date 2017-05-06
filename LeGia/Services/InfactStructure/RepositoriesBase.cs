@@ -21,7 +21,7 @@ namespace LeGia.Services.InfactStructure
         public bool CheckRecord(string sp, DynamicParameters para)
         {
             var check = db.Query<int>(sp, para, null, false, null, CommandType.StoredProcedure);
-            return bool.Parse(check.ToString());
+            return Convert.ToBoolean(check.First());
         }
 
         public void Execute(string sp, DynamicParameters para)

@@ -34,6 +34,7 @@ namespace LeGia
 
             //dependences
             services.AddSingleton<ICompanyRepository, CompanyRepository>();
+            services.AddSingleton<ICategoryRepository, CategoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +59,7 @@ namespace LeGia
             {
                 routes.MapRoute(
                     name: "areaRoute",
-                    template: "{area:exists}/{controller=Dashboard}/{action=Index}");
+                    template: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
 
                 routes.MapRoute(
                     name: "default",

@@ -1,39 +1,40 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@model LeGia.Areas.Admin.Models.CategoryViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h3>Tạo mới danh mục chủ đề</h3>
-
-<form class="form-horizontal" asp-controller="" asp-action="" method="post">
+<form class="form-horizontal" asp-controller="Category" asp-action="New" method="post">
+    <div asp-validation-summary="@ValidationSummary.ModelOnly" class="text-danger"></div>
     <div class="form-group">
         <label for="tenchude" class="col-sm-2 control-label">Tên chủ đề</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control height-input" id="tenchude" placeholder="tên chủ đề">
+            <input asp-for="Name" class="form-control height-input" id="tenchude" placeholder="tên chủ đề">
         </div>
     </div>
     <div class="form-group">
         <label for="dinhdanh" class="col-sm-2 control-label">Định danh</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control height-input" id="dinhdanh" placeholder="định danh - tự động lấy từ chủ đề">
+            <input asp-for="Alias" class="form-control height-input" id="dinhdanh" placeholder="định danh - tự động lấy từ chủ đề">
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <label class="col-sm-2"><input type="checkbox" checked/>  là menu ?</label>
-            <label class="col-sm-2"><input type="checkbox" checked/>  hiển thị ?</label>
+            <label class="col-sm-2"><input asp-for="IsMenu" checked/>  là menu ?</label>
+            <label class="col-sm-2"><input asp-for="Activated" checked/>  hiển thị ?</label>
         </div>
     </div>
     <div class="form-group">
         <label for="stt" class="col-sm-2 control-label">Số thứ tự</label>
         <div class="col-sm-1">
-            <input type="number" class="form-control height-input" id="stt">
+            <input asp-for="Orders" class="form-control height-input" id="stt">
         </div>
     </div>
     <div class="form-group">
         <label for="mota" class="col-sm-2 control-label">Mô tả</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control height-input" id="mota" placeholder="mô tả thêm cho chủ đề dễ hiểu">
+            <input asp-for="Description" class="form-control height-input" id="mota" placeholder="mô tả thêm cho chủ đề dễ hiểu">
         </div>
     </div>
     <div class="form-group">
