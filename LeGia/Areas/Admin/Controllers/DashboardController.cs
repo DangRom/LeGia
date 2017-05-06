@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LeGia.Areas.Admin.Models;
+using LeGia.Services.IRepository;
+using LeGia.Services.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LeGia.Areas.Controllers
@@ -9,9 +12,50 @@ namespace LeGia.Areas.Controllers
     [Area("Admin")]
     public class DashboardController : Controller
     {
+        private ICompanyRepository _repo;
+        public DashboardController(ICompanyRepository repo){
+            _repo = repo;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            try{
+                var model = _repo.GetCompany();
+                var company = new CompanyViewModel(){
+                    Name = model.Name,
+                    Address = model.Address,
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                    HotLine = model.HotLine,
+                    TaxCode = model.TaxCode,
+                    About = model.About
+                };
+                return View(company);
+            }catch(Exception ex){
+                ModelState.AddModelError("ModelError", ex.Message);
+                return View();
+            }
+        }
+
+        [HttpPostAttribute]
+        public IActionResult Index(CompanyViewModel company){
+            try{
+                var model = new CompanyModel(){
+                    Name = company.Name,
+                    Address = company.Address,
+                    Email = company.Email,
+                    PhoneNumber = company.PhoneNumber,
+                    HotLine = company.HotLine,
+                    TaxCode = company.TaxCode,
+                    About = company.About
+                };
+                _repo.Update(model);
+                return View();
+
+            }catch(Exception ex){
+                ModelState.AddModelError("ModelError", ex.Message);
+                return View(company);
+            }
         }
     }
 }
