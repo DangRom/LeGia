@@ -29,6 +29,11 @@ namespace LeGia.Services.Repository{
             return db.Query<CategoryModel>("getAllCategory", null, null, false, null, commandType: CommandType.StoredProcedure);
         }
 
+        public IEnumerable<CategoryModel> GetAllForPost()
+        {
+            return GetAll("getAllCategoryForPost", null);
+        }
+
         public CategoryModel GetById(int id)
         {
             var para = new DynamicParameters();

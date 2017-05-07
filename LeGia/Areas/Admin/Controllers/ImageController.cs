@@ -30,21 +30,18 @@ namespace LeGia.Areas.Admin.Controllers
         [HttpPostAttribute]
         public IActionResult New(ImageViewModel image){
             try{
-                if(ModelState.IsValid){
-                    var model = new ImageModel(){
-                        Name = image.Name,
-                        Alias = image.Alias,
-                        IsLogo = image.IsLogo,
-                        IsProject = image.IsProject,
-                        IsSlide = image.IsSlide,
-                        Link = image.Link,
-                        Image = image.Image,
-                        Description = image.Description
-                    };
-                    _repo.Insert(model);
-                    return RedirectToAction("Index");
-                }
-                return View(image);
+                var model = new ImageModel(){
+                    Name = image.Name,
+                    Alias = image.Alias,
+                    IsLogo = image.IsLogo,
+                    IsProject = image.IsProject,
+                    IsSlide = image.IsSlide,
+                    Link = image.Link,
+                    Image = image.Image,
+                    Description = image.Description
+                };
+                _repo.Insert(model);
+                return RedirectToAction("New");
             }catch(Exception ex){
                 ModelState.AddModelError("Lỗi", ex.Message);
                 return View(image);

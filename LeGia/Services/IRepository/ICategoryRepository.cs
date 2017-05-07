@@ -10,5 +10,6 @@ namespace LeGia.Services.IRepository{
         void Update(CategoryModel model);
         bool CheckName(string name);
         void Delete(int id);
+        IEnumerable<CategoryModel> GetAllForPost();
     }
 }

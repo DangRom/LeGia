@@ -7,3 +7,9 @@
     padding: initial;
     padding-top: -5px;
 }
+
+.select-text {
+    height: 25px;
+    text-align: center;
+    padding-top: 0.5px
+}
