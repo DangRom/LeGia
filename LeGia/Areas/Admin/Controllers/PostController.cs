@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,28 +15,33 @@ namespace LeGia.Areas.Admin.Controllers
     {
         private ICategoryRepository _categoryRepo;
         private IPostRepository _postRepo;
-        private List<SelectListItem> listCategory => _categoryRepo.GetAllForPost().Select(c => new SelectListItem{
-            Value = c.Id.ToString(), Text = c.Name
-        }).ToList();
+        private Task<List<SelectListItem>> GetListCategory(){
+            var categorys = Task.Factory.StartNew(() =>_categoryRepo.GetAllForPost().Select(c => new SelectListItem{
+                Value = c.Id.ToString(),
+                Text = c.Name
+            }).ToList());
+            categorys.Result.Insert(0, new SelectListItem { Value = "0", Text = "--chọn danh mục--"});
+            return categorys;
+        }
         public PostController(IPostRepository postRepo, ICategoryRepository categoryRepo){
             _postRepo = postRepo;
             _categoryRepo = categoryRepo;
         }
 
-        public IActionResult Index()
-        {
+        public IActionResult Index(){
             return View();
         }
 
-        public IActionResult New()
-        {
-            ViewBag.ListCategory = listCategory;
+        public async Task<IActionResult> New(){
+            ViewBag.ListCategory = await GetListCategory();
             return View();
         }
 
         [HttpPostAttribute]
-        public IActionResult New(PostViewModel post){
-            try{
+        public async Task<IActionResult> New(PostViewModel post){
+            ViewBag.ListCategory = await GetListCategory();
+            try
+            {
                 if(!_postRepo.CheckName(post.Name)){
                     var model = new PostModel(){
                         Name = post.Name,
@@ -56,8 +61,7 @@ namespace LeGia.Areas.Admin.Controllers
             }
         }
 
-        public IActionResult Update()
-        {
+        public IActionResult Update(){
             return View();
         }
     }
