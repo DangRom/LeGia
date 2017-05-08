@@ -28,8 +28,23 @@ namespace LeGia.Areas.Admin.Controllers
             _categoryRepo = categoryRepo;
         }
 
-        public IActionResult Index(){
-            return View();
+        public async Task<IActionResult> Index(){
+            try{
+                var models = await Task.Factory.StartNew(() => _postRepo.GetAllPost());
+                var posts = models.Select(p => new PostViewModel{
+                    Id = p.Id,
+                    Name = p.Name,
+                    Alias = p.Alias,
+                    Image = p.Image,
+                    CategoryId = p.CategoryId,
+                    CategoryName = p.CategoryName,
+                    Activated = p.Activated
+                }).ToList();
+                return View(posts);
+            }catch(Exception ex){
+                ModelState.AddModelError("loi : ", ex.Message);
+                return View();
+            }
         }
 
         public async Task<IActionResult> New(){
@@ -54,15 +69,63 @@ namespace LeGia.Areas.Admin.Controllers
                     _postRepo.Insert(model);
                     return RedirectToAction("New");
                 }
-                return View();
+                ModelState.AddModelError("loi : ", "Tên bài viết này đã tồn tại rồi, hảy thử tên khác.");
+                return View(post);
             }catch(Exception ex){
                 ModelState.AddModelError("loi : ", ex.Message);
                 return View(post);
             }
         }
 
-        public IActionResult Update(){
-            return View();
+        public async Task<IActionResult> Update(int id){
+            try{
+                ViewBag.ListCategory = await GetListCategory();
+                var model = _postRepo.GetPost(id);
+                var post = new PostViewModel(){
+                    Id = model.Id,
+                    Name = model.Name,
+                    Alias = model.Alias,
+                    Image = model.Image,
+                    CategoryId = model.CategoryId,
+                    Activated = model.Activated,
+                    Content = model.Content
+                };
+                return View(post);
+            }catch(Exception ex){
+                ModelState.AddModelError("loi : ", ex.Message);
+                return View();
+            }
+        }
+
+        [HttpPostAttribute]
+        public async Task<IActionResult> Update(PostViewModel post){
+            ViewBag.ListCategory = await GetListCategory();
+            try{
+                var model = new PostModel(){
+                    Id = post.Id,
+                    Name = post.Name,
+                    Alias = post.Name,
+                    Image = post.Image, 
+                    CategoryId = post.CategoryId,
+                    Activated = post.Activated,
+                    Content = post.Content
+                };
+                _postRepo.Update(model);
+                return RedirectToAction("Index");
+            }catch(Exception ex){
+                ModelState.AddModelError("loi : ", ex.Message);
+                return View(post);
+            }
+        }
+
+        [HttpDeleteAttribute]
+        public JsonResult Delete(int id){
+            try{
+                _postRepo.Delete(id);
+                return Json("OK");
+            }catch(Exception ex){
+                return Json(ex.Message);
+            }
         }
     }
 }
