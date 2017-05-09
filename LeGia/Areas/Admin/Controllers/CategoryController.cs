@@ -62,7 +62,7 @@ namespace LeGia.Areas.Admin.Controllers
                 }
             }catch(Exception ex){
                 ModelState.AddModelError("Lỗi", ex.Message);
-                return View();
+                return View(category);
             }
         }
 
