@@ -46,24 +46,27 @@ namespace LeGia.Areas.Admin.Controllers
         [HttpPostAttribute]
         public IActionResult New(ImageViewModel img){
             try{
-                if (!_repo.CheckName(img.Name)){
-                    var model = new ImageModel()
-                    {
-                        Name = img.Name,
-                        Alias = img.Alias,
-                        IsLogo = img.IsLogo,
-                        IsProject = img.IsProject,
-                        IsSlide = img.IsSlide,
-                        Link = img.Link,
-                        Image = img.Image,
-                        Description = img.Description
-                    };
-                    _repo.Insert(model);
-                    return RedirectToAction("New");
-                }else{
-                    ModelState.AddModelError("Lỗi", "tên này đã tồn tại rồi, hãy thử tên khác.");
-                    return View(img);
+                if (ModelState.IsValid){
+                    if (!_repo.CheckName(img.Name)){
+                        var model = new ImageModel()
+                        {
+                            Name = img.Name,
+                            Alias = img.Alias,
+                            IsLogo = img.IsLogo,
+                            IsProject = img.IsProject,
+                            IsSlide = img.IsSlide,
+                            Link = img.Link,
+                            Image = img.Image,
+                            Description = img.Description
+                        };
+                        _repo.Insert(model);
+                        return RedirectToAction("New");
+                    }else{
+                        ModelState.AddModelError("Lỗi", "tên này đã tồn tại rồi, hãy thử tên khác.");
+                        return View(img);
+                    }
                 }
+                return View();
             }catch(Exception ex){
                 ModelState.AddModelError("Lỗi", ex.Message);
                 return View(img);
@@ -84,8 +87,7 @@ namespace LeGia.Areas.Admin.Controllers
                     Description = model.Description
                 };
                 return View(img);
-            }
-            catch(Exception ex){
+            }catch(Exception ex){
                 ModelState.AddModelError("Lỗi", ex.Message);
                 return View();
             }
@@ -94,21 +96,23 @@ namespace LeGia.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Update(ImageViewModel img){
             try{
-                var model = new ImageModel(){
-                    Id = img.Id,
-                    Name = img.Name,
-                    Alias = img.Alias,
-                    IsLogo = img.IsLogo,
-                    IsProject = img.IsProject,
-                    IsSlide = img.IsSlide,
-                    Link = img.Link,
-                    Image = img.Image,
-                    Description = img.Description
-                };
-                _repo.Update(model);
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex){
+                if (ModelState.IsValid){
+                    var model = new ImageModel(){
+                        Id = img.Id,
+                        Name = img.Name,
+                        Alias = img.Alias,
+                        IsLogo = img.IsLogo,
+                        IsProject = img.IsProject,
+                        IsSlide = img.IsSlide,
+                        Link = img.Link,
+                        Image = img.Image,
+                        Description = img.Description
+                    };
+                    _repo.Update(model);
+                    return RedirectToAction("Index");
+                }
+                return View();
+            }catch (Exception ex){
                 ModelState.AddModelError("Lỗi", ex.Message);
                 return View(img);
             }

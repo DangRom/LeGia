@@ -57,20 +57,23 @@ namespace LeGia.Areas.Admin.Controllers
             ViewBag.ListCategory = await GetListCategory();
             try
             {
-                if(!_postRepo.CheckName(post.Name)){
-                    var model = new PostModel(){
-                        Name = post.Name,
-                        Alias = post.Alias,
-                        Image = post.Image,
-                        CategoryId = post.CategoryId,
-                        Activated = post.Activated,
-                        Content = post.Content
-                    };
-                    _postRepo.Insert(model);
-                    return RedirectToAction("New");
+                if (ModelState.IsValid){
+                    if (!_postRepo.CheckName(post.Name)){
+                        var model = new PostModel(){
+                            Name = post.Name,
+                            Alias = post.Alias,
+                            Image = post.Image,
+                            CategoryId = post.CategoryId,
+                            Activated = post.Activated,
+                            Content = post.Content
+                        };
+                        _postRepo.Insert(model);
+                        return RedirectToAction("New");
+                    }
+                    ModelState.AddModelError("loi : ", "Tên bài viết này đã tồn tại rồi, hảy thử tên khác.");
+                    return View(post);
                 }
-                ModelState.AddModelError("loi : ", "Tên bài viết này đã tồn tại rồi, hảy thử tên khác.");
-                return View(post);
+                return View();
             }catch(Exception ex){
                 ModelState.AddModelError("loi : ", ex.Message);
                 return View(post);
@@ -101,17 +104,20 @@ namespace LeGia.Areas.Admin.Controllers
         public async Task<IActionResult> Update(PostViewModel post){
             ViewBag.ListCategory = await GetListCategory();
             try{
-                var model = new PostModel(){
-                    Id = post.Id,
-                    Name = post.Name,
-                    Alias = post.Name,
-                    Image = post.Image, 
-                    CategoryId = post.CategoryId,
-                    Activated = post.Activated,
-                    Content = post.Content
-                };
-                _postRepo.Update(model);
-                return RedirectToAction("Index");
+                if (ModelState.IsValid){
+                    var model = new PostModel(){
+                        Id = post.Id,
+                        Name = post.Name,
+                        Alias = post.Name,
+                        Image = post.Image,
+                        CategoryId = post.CategoryId,
+                        Activated = post.Activated,
+                        Content = post.Content
+                    };
+                    _postRepo.Update(model);
+                    return RedirectToAction("Index");
+                }
+                return View();
             }catch(Exception ex){
                 ModelState.AddModelError("loi : ", ex.Message);
                 return View(post);

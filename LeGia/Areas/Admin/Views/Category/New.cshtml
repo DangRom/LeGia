@@ -6,17 +6,19 @@
 
 <h3>Tạo mới danh mục chủ đề</h3>
 <form class="form-horizontal" asp-controller="Category" asp-action="New" method="post">
-    <div asp-validation-summary="@ValidationSummary.ModelOnly" class="text-danger"></div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
         <label for="tenchude" class="col-sm-2 control-label">Tên chủ đề</label>
         <div class="col-sm-6">
             <input asp-for="Name" class="form-control height-input" id="tenchude" placeholder="tên chủ đề">
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <label for="dinhdanh" class="col-sm-2 control-label">Định danh</label>
         <div class="col-sm-6">
             <input asp-for="Alias" class="form-control height-input" id="dinhdanh" placeholder="định danh - tự động lấy từ chủ đề">
+            <span asp-validation-for="Alias" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
@@ -29,6 +31,7 @@
         <label for="stt" class="col-sm-2 control-label">Số thứ tự</label>
         <div class="col-sm-1">
             <input asp-for="Orders" class="form-control height-input" id="stt">
+            <span asp-validation-for="Orders" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">

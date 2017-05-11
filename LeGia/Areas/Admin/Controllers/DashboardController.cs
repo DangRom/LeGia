@@ -40,18 +40,22 @@ namespace LeGia.Areas.Controllers
         [HttpPostAttribute]
         public IActionResult Index(CompanyViewModel company){
             try{
-                var model = new CompanyModel(){
-                    Name = company.Name,
-                    Address = company.Address,
-                    Email = company.Email,
-                    PhoneNumber = company.PhoneNumber,
-                    HotLine = company.HotLine,
-                    TaxCode = company.TaxCode,
-                    About = company.About
-                };
-                _repo.Update(model);
+                if (ModelState.IsValid)
+                {
+                    var model = new CompanyModel()
+                    {
+                        Name = company.Name,
+                        Address = company.Address,
+                        Email = company.Email,
+                        PhoneNumber = company.PhoneNumber,
+                        HotLine = company.HotLine,
+                        TaxCode = company.TaxCode,
+                        About = company.About
+                    };
+                    _repo.Update(model);
+                    return RedirectToAction("Index");
+                }
                 return View();
-
             }catch(Exception ex){
                 ModelState.AddModelError("ModelError", ex.Message);
                 return View(company);

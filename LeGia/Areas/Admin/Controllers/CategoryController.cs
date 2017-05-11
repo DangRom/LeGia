@@ -45,21 +45,24 @@ namespace LeGia.Areas.Admin.Controllers
         [HttpPostAttribute]
         public IActionResult New(CategoryViewModel category){
             try{
-                if(!_repo.CheckName(category.Name)){
-                    var model = new CategoryModel(){
-                        Name = category.Name,
-                        Alias = category.Alias,
-                        IsMenu = category.IsMenu,
-                        Activated = category.Activated,
-                        Orders = category.Orders,
-                        Description = category.Description
-                    };
-                    _repo.Insert(model);
-                    return RedirectToAction("New");
-                }else{
-                    ModelState.AddModelError("","Tên loại chủ đề này đã tồn tại rồi, hãy thử tên khác.");
-                    return View(category);
+                if (ModelState.IsValid){
+                    if (!_repo.CheckName(category.Name)){
+                        var model = new CategoryModel(){
+                            Name = category.Name,
+                            Alias = category.Alias,
+                            IsMenu = category.IsMenu,
+                            Activated = category.Activated,
+                            Orders = category.Orders,
+                            Description = category.Description
+                        };
+                        _repo.Insert(model);
+                        return RedirectToAction("New");
+                    }else{
+                        ModelState.AddModelError("", "Tên loại chủ đề này đã tồn tại rồi, hãy thử tên khác.");
+                        return View(category);
+                    }
                 }
+                return View();
             }catch(Exception ex){
                 ModelState.AddModelError("Lỗi", ex.Message);
                 return View(category);
@@ -89,17 +92,22 @@ namespace LeGia.Areas.Admin.Controllers
         [HttpPostAttribute]
         public IActionResult Update(CategoryViewModel category){
             try{
-                var model = new CategoryModel(){
-                    Id = category.Id,
-                    Name = category.Name,
-                    Alias = category.Alias,
-                    IsMenu = category.IsMenu,
-                    Activated = category.Activated,
-                    Orders = category.Orders,
-                    Description = category.Description
-                };
-                _repo.Update(model);
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var model = new CategoryModel()
+                    {
+                        Id = category.Id,
+                        Name = category.Name,
+                        Alias = category.Alias,
+                        IsMenu = category.IsMenu,
+                        Activated = category.Activated,
+                        Orders = category.Orders,
+                        Description = category.Description
+                    };
+                    _repo.Update(model);
+                    return RedirectToAction("Index");
+                }
+                return View();
             }catch(Exception ex){
                 ModelState.AddModelError("Lỗi", ex.Message);
                 return View();                
