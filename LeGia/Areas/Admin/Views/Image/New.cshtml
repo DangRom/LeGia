@@ -5,44 +5,43 @@
 }
 
 <h3>Tạo mới thông tin hình ảnh</h3>
-
 <form class="form-horizontal" asp-controller="Image" asp-action="New" method="post">
     <div asp-validation-summary="@ValidationSummary.ModelOnly" class="text-danger"></div>
     <div class="form-group">
-        <label for="tenhienthi" class="col-sm-2 control-label">Tên hiển thị</label>
+        <label for="ten" class="col-sm-2 control-label">Tên chủ đề</label>
         <div class="col-sm-6">
-            <input asp-for="Name" class="form-control height-input" id="tenhienthi" placeholder="tên hiển thị cho hình ảnh">
+            <input asp-for="Name" class="form-control height-input" id="ten" placeholder="tên">
         </div>
     </div>
     <div class="form-group">
         <label for="dinhdanh" class="col-sm-2 control-label">Định danh</label>
         <div class="col-sm-6">
-            <input asp-for="Alias" class="form-control height-input" id="dinhdanh" placeholder="định danh - tự động lấy tên hiển thị">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="image" class="col-sm-2 control-label">Hình ảnh</label>
-        <div class="col-sm-10">
-            <input asp-for="Image" class="form-control height-input" id="image" placeholder="chọn hình ảnh">
+            <input asp-for="Alias" class="form-control height-input" id="dinhdanh" placeholder="định danh - tự động lấy từ tên">
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <label class="col-sm-3"><input asp-for="IsLogo"/>  logo khách hàng</label>
-            <label class="col-sm-2"><input asp-for="IsSlide" />  slide</label>
+            <label class="col-sm-2"><input asp-for="IsLogo" />  khách hàng</label>
             <label class="col-sm-2"><input asp-for="IsProject" />  dự án</label>
+            <label class="col-sm-2"><input asp-for="IsSlide" />  slide</label>
         </div>
     </div>
     <div class="form-group">
-        <label for="link" class="col-sm-2 control-label">Link</label>
+        <label for="l" class="col-sm-2 control-label">Link</label>
         <div class="col-sm-10">
-            <input asp-for="Link" class="form-control height-input" id="link" placeholder="link trỏ đến nếu có">
+            <input asp-for="Link" class="form-control height-input" id="l" placeholder="dán link (nếu có) vào đây">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="im" class="col-sm-2 control-label">Hình ảnh</label>
+        <div class="col-sm-10">
+            <input asp-for="Image" class="form-control height-input" id="im" placeholder="chọn hình ảnh">
         </div>
     </div>
     <div class="form-group">
         <label for="mota" class="col-sm-2 control-label">Mô tả</label>
         <div class="col-sm-10">
-            <input asp-for="Description" class="form-control height-input" id="mota" placeholder="mô tả thêm về hình ảnh">
+            <input asp-for="Description" class="form-control height-input" id="mota" placeholder="mô tả thêm cho chủ đề dễ hiểu">
         </div>
     </div>
     <div class="form-group">

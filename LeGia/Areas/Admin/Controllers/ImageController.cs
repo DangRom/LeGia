@@ -17,9 +17,25 @@ namespace LeGia.Areas.Admin.Controllers
             _repo = repo;
         }
 
-        public IActionResult Index()
-        {
-            return View();
+        public IActionResult Index(){
+            try{
+                var models = _repo.GetAllImage();
+                var images = models.Select(i => new ImageViewModel(){
+                    Id = i.Id,
+                    Name = i.Name,
+                    Alias = i.Alias,
+                    IsLogo = i.IsLogo,
+                    IsProject = i.IsProject,
+                    IsSlide = i.IsSlide,
+                    Link = i.Link,
+                    Image = i.Image,
+                    Description = i.Description
+                });
+                return View(images);
+            }catch(Exception ex){
+                ModelState.AddModelError("Lỗi", ex.Message);
+                return View();
+            }
         }
 
         public IActionResult New()
@@ -28,29 +44,84 @@ namespace LeGia.Areas.Admin.Controllers
         }
 
         [HttpPostAttribute]
-        public IActionResult New(ImageViewModel image){
+        public IActionResult New(ImageViewModel img){
             try{
-                var model = new ImageModel(){
-                    Name = image.Name,
-                    Alias = image.Alias,
-                    IsLogo = image.IsLogo,
-                    IsProject = image.IsProject,
-                    IsSlide = image.IsSlide,
-                    Link = image.Link,
-                    Image = image.Image,
-                    Description = image.Description
-                };
-                _repo.Insert(model);
-                return RedirectToAction("New");
+                if (!_repo.CheckName(img.Name)){
+                    var model = new ImageModel()
+                    {
+                        Name = img.Name,
+                        Alias = img.Alias,
+                        IsLogo = img.IsLogo,
+                        IsProject = img.IsProject,
+                        IsSlide = img.IsSlide,
+                        Link = img.Link,
+                        Image = img.Image,
+                        Description = img.Description
+                    };
+                    _repo.Insert(model);
+                    return RedirectToAction("New");
+                }else{
+                    ModelState.AddModelError("Lỗi", "tên này đã tồn tại rồi, hãy thử tên khác.");
+                    return View(img);
+                }
             }catch(Exception ex){
                 ModelState.AddModelError("Lỗi", ex.Message);
-                return View(image);
+                return View(img);
             } 
         }
 
-        public IActionResult Update()
-        {
-            return View();
+        public IActionResult Update(int id){
+            try{
+                var model = _repo.GetImage(id);
+                var img = new ImageViewModel(){
+                    Name = model.Name,
+                    Alias = model.Alias,
+                    IsLogo = model.IsLogo,
+                    IsProject = model.IsProject,
+                    IsSlide = model.IsSlide,
+                    Link = model.Link,
+                    Image = model.Image,
+                    Description = model.Description
+                };
+                return View(img);
+            }
+            catch(Exception ex){
+                ModelState.AddModelError("Lỗi", ex.Message);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Update(ImageViewModel img){
+            try{
+                var model = new ImageModel(){
+                    Id = img.Id,
+                    Name = img.Name,
+                    Alias = img.Alias,
+                    IsLogo = img.IsLogo,
+                    IsProject = img.IsProject,
+                    IsSlide = img.IsSlide,
+                    Link = img.Link,
+                    Image = img.Image,
+                    Description = img.Description
+                };
+                _repo.Update(model);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex){
+                ModelState.AddModelError("Lỗi", ex.Message);
+                return View(img);
+            }
+        }
+
+        [HttpDelete]
+        public JsonResult Delete(int id){
+            try{
+                _repo.Delete(id);
+                return Json("OK");
+            }catch(Exception ex){
+                return Json(ex.Message);
+            }
         }
     }
 }

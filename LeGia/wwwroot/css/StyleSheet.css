@@ -1,5 +1,6 @@
 ﻿.height-input {
-    height: 25px
+    height: 25px;
+    padding: inherit
 }
 
 .height-input-button-grid {

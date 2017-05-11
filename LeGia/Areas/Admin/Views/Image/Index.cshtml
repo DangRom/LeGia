@@ -1,6 +1,6 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@model IEnumerable<LeGia.Areas.Admin.Models.ImageViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -26,116 +26,43 @@
         </tr>
     </tfoot>
     <tbody>
-        <tr>
-            <td>Tiger Nixon</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>
-                <button class="height-input-button-grid btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>  Sửa</button>
-                <button class="height-input-button-grid btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i>  Xóa</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Garrett Winters</td>
-            <td>Accountant</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>
-                <button class="height-input-button-grid btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>  Sửa</button>
-                <button class="height-input-button-grid btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i>  Xóa</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Ashton Cox</td>
-            <td>Junior Technical Author</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>
-                <button class="height-input-button-grid btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>  Sửa</button>
-                <button class="height-input-button-grid btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i>  Xóa</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Senior Javascript Developer</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>
-                <button class="height-input-button-grid btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>  Sửa</button>
-                <button class="height-input-button-grid btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i>  Xóa</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Accountant</td>
-            <td>Edinburgh</td>
-            <td>Tokyo</td>
-            <td>Edinburgh</td>
-            <td>
-                <button class="height-input-button-grid btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>  Sửa</button>
-                <button class="height-input-button-grid btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i>  Xóa</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Integration Specialist</td>
-            <td>New York</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>
-                <button class="height-input-button-grid btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>  Sửa</button>
-                <button class="height-input-button-grid btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i>  Xóa</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Sales Assistant</td>
-            <td>San Francisco</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>
-                <button class="height-input-button-grid btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>  Sửa</button>
-                <button class="height-input-button-grid btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i>  Xóa</button>
-            </td>
-        </tr>
-        <tr>
-            
-            <td>Edinburgh</td>
-            <td>Integration Specialist</td>
-            <td>Tokyo</td>
-            <td>Edinburgh</td>
-            <td>
-                <button class="height-input-button-grid btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>  Sửa</button>
-                <button class="height-input-button-grid btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i>  Xóa</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Javascript Developer</td>
-            <td>San Francisco</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>
-                <button class="height-input-button-grid btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>  Sửa</button>
-                <button class="height-input-button-grid btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i>  Xóa</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Software Engineer</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>
-                <button class="height-input-button-grid btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>  Sửa</button>
-                <button class="height-input-button-grid btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i>  Xóa</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Jena Gaines</td>
-            <td>London</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>
-                <button class="height-input-button-grid btn btn-info"> <i class="fa fa-pencil" aria-hidden="true"></i>  Sửa </button>
-                <button class="height-input-button-grid btn btn-danger"> <i class="fa fa-trash-o" aria-hidden="true"></i>  Xóa </button>
-            </td>
-        </tr>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@m.Name</td>
+                <td>@m.IsProject</td>
+                <td>@m.IsSlide</td>
+                <td>@m.IsLogo</td>
+                <td style="text-align: right">
+                    <a class="btn btn-primary fa fa-pencil" href="/admin/image/update/@m.Id"></a>
+                    <a class="btn btn-danger fa fa-trash-o" onclick="del(@m.Id)"></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section Scripts{
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#')
+    });
+
+    function del(id){
+        var c = confirm("Bạn có chắc là không muốn hiển chủ đề này ?");
+            if(c){
+                $.ajax({
+                    url: "/admin/image/delete/" + id,
+                    type: "DELETE",
+                    dataType: 'json',
+                    success: function(mess){
+                        window.location.reload();
+                    },
+                    error: function(error){
+                        alert(error);
+                    }
+                })
+            }
+        };
+    </script>
+}
