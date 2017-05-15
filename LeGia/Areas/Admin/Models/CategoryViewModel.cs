@@ -12,7 +12,6 @@ namespace LeGia.Areas.Admin.Models{
         public bool IsMenu { get; set; }
         public bool Activated { get; set; }
         [Required(ErrorMessage = "Số thứ tự không được bỏ trống")]
-        [MinLength(1, ErrorMessage ="không được nhỏ hơn 0")]
         public int Orders { get; set; }
         public string Description { get; set; }
     }

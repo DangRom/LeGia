@@ -33,7 +33,7 @@ namespace LeGia.Areas.Admin.Controllers
                 });
                 return View(images);
             }catch(Exception ex){
-                ModelState.AddModelError("Lỗi", ex.Message);
+                ModelState.AddModelError("", ex.Message);
                 return View();
             }
         }
@@ -62,13 +62,13 @@ namespace LeGia.Areas.Admin.Controllers
                         _repo.Insert(model);
                         return RedirectToAction("New");
                     }else{
-                        ModelState.AddModelError("Lỗi", "tên này đã tồn tại rồi, hãy thử tên khác.");
+                        ModelState.AddModelError("", "tên này đã tồn tại rồi, hãy thử tên khác.");
                         return View(img);
                     }
                 }
                 return View();
             }catch(Exception ex){
-                ModelState.AddModelError("Lỗi", ex.Message);
+                ModelState.AddModelError("", ex.Message);
                 return View(img);
             } 
         }
@@ -88,7 +88,7 @@ namespace LeGia.Areas.Admin.Controllers
                 };
                 return View(img);
             }catch(Exception ex){
-                ModelState.AddModelError("Lỗi", ex.Message);
+                ModelState.AddModelError("", ex.Message);
                 return View();
             }
         }
@@ -113,7 +113,7 @@ namespace LeGia.Areas.Admin.Controllers
                 }
                 return View();
             }catch (Exception ex){
-                ModelState.AddModelError("Lỗi", ex.Message);
+                ModelState.AddModelError("", ex.Message);
                 return View(img);
             }
         }

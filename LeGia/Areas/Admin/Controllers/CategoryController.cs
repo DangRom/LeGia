@@ -32,7 +32,7 @@ namespace LeGia.Areas.Admin.Controllers
                 }).ToList();
                 return View(categorys);
             }catch(Exception ex){
-                ModelState.AddModelError("Lỗi", ex.Message);
+                ModelState.AddModelError("", ex.Message);
                 return View();
             }
         }
@@ -64,7 +64,7 @@ namespace LeGia.Areas.Admin.Controllers
                 }
                 return View();
             }catch(Exception ex){
-                ModelState.AddModelError("Lỗi", ex.Message);
+                ModelState.AddModelError("", ex.Message);
                 return View(category);
             }
         }
@@ -84,7 +84,7 @@ namespace LeGia.Areas.Admin.Controllers
                 };
                 return View(category);
             }catch(Exception ex){
-                ModelState.AddModelError("Lỗi", ex.Message);
+                ModelState.AddModelError("", ex.Message);
                 return View();
             }
         }
@@ -109,7 +109,7 @@ namespace LeGia.Areas.Admin.Controllers
                 }
                 return View();
             }catch(Exception ex){
-                ModelState.AddModelError("Lỗi", ex.Message);
+                ModelState.AddModelError("", ex.Message);
                 return View();                
             }
         }

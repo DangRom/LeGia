@@ -32,7 +32,7 @@ namespace LeGia.Areas.Controllers
                 };
                 return View(company);
             }catch(Exception ex){
-                ModelState.AddModelError("ModelError", ex.Message);
+                ModelState.AddModelError("", ex.Message);
                 return View();
             }
         }
@@ -57,7 +57,7 @@ namespace LeGia.Areas.Controllers
                 }
                 return View();
             }catch(Exception ex){
-                ModelState.AddModelError("ModelError", ex.Message);
+                ModelState.AddModelError("", ex.Message);
                 return View(company);
             }
         }

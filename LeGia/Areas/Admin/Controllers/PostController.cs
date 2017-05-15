@@ -42,7 +42,7 @@ namespace LeGia.Areas.Admin.Controllers
                 }).ToList();
                 return View(posts);
             }catch(Exception ex){
-                ModelState.AddModelError("loi : ", ex.Message);
+                ModelState.AddModelError("", ex.Message);
                 return View();
             }
         }
@@ -70,12 +70,12 @@ namespace LeGia.Areas.Admin.Controllers
                         _postRepo.Insert(model);
                         return RedirectToAction("New");
                     }
-                    ModelState.AddModelError("loi : ", "Tên bài viết này đã tồn tại rồi, hảy thử tên khác.");
+                    ModelState.AddModelError("", "Tên bài viết này đã tồn tại rồi, hảy thử tên khác.");
                     return View(post);
                 }
                 return View();
             }catch(Exception ex){
-                ModelState.AddModelError("loi : ", ex.Message);
+                ModelState.AddModelError("", ex.Message);
                 return View(post);
             }
         }
@@ -95,7 +95,7 @@ namespace LeGia.Areas.Admin.Controllers
                 };
                 return View(post);
             }catch(Exception ex){
-                ModelState.AddModelError("loi : ", ex.Message);
+                ModelState.AddModelError("", ex.Message);
                 return View();
             }
         }
@@ -119,7 +119,7 @@ namespace LeGia.Areas.Admin.Controllers
                 }
                 return View();
             }catch(Exception ex){
-                ModelState.AddModelError("loi : ", ex.Message);
+                ModelState.AddModelError("", ex.Message);
                 return View(post);
             }
         }
