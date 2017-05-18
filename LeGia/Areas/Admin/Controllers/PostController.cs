@@ -108,7 +108,7 @@ namespace LeGia.Areas.Admin.Controllers
                     var model = new PostModel(){
                         Id = post.Id,
                         Name = post.Name,
-                        Alias = post.Name,
+                        Alias = post.Alias,
                         Image = post.Image,
                         CategoryId = post.CategoryId,
                         Activated = post.Activated,
