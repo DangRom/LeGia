@@ -41,6 +41,11 @@ namespace LeGia.Services.Repository{
             return db.Query<CategoryModel>("getCategoryById", para, null, false, null, commandType: CommandType.StoredProcedure).SingleOrDefault();
         }
 
+        public IEnumerable<CategoryModel> GetHeadMenu()
+        {
+            return GetAll("getHeadMenu", null);
+        }
+
         public void Insert(CategoryModel model){
             var para = GetParams(model);
             db.Execute("insertCategory", para, null, null, commandType:CommandType.StoredProcedure);

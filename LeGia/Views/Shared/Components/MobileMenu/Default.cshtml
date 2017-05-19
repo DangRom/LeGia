@@ -1,0 +1,73 @@
+﻿@model LeGia.Models.MenuViewModel
+
+<div class="ui sidebar inverted vertical menu" id="mobile__menu">
+    <ul class="list__menu list__menu__mobile">
+        @foreach (var h in Model.Heads)
+        {
+            <li class="list__item__menu__mobile">
+                <a class="list__item__menu__mobile__link" href="#">@h.Name</a>
+                <ul class="list__menu list__menu__mobile__dropdown">
+                    @{ var items = @Model.Items.Where(i => i.CategoryId == h.Id);}
+                    @foreach (var i in items)
+                    {
+                        <li class="list__menu__mobile__dropdown__item">
+                            <a href="#" class="list__menu__mobile__dropdown__item__link">@i.Name</a>
+                        </li>
+                    }
+                </ul>
+            </li>
+        }
+        @*<li class="list__item__menu__mobile">
+            <a class="list__item__menu__mobile__link" href="#">Trang Chủ</a>
+        </li>
+        <li class="list__item__menu__mobile">
+            <a class="list__item__menu__mobile__link" href="#">Giới Thiệu</a>
+        </li>
+        <li class="list__item__menu__mobile">
+            <a class="list__item__menu__mobile__link dropdown__menu__mobile" href="#">Dịch Vụ <i class="fa fa-caret-down dropdown__icon" aria-hidden="true"></i></a>
+            <ul class="list__menu list__menu__mobile__dropdown">
+                <li class="list__menu__mobile__dropdown__item">
+                    <a href="#" class="list__menu__mobile__dropdown__item__link">Khai Báo Hải Quan</a>
+                </li>
+                <li class="list__menu__mobile__dropdown__item">
+                    <a href="#" class="list__menu__mobile__dropdown__item__link">Vận Chuyển Container Đường Bộ</a>
+                </li>
+                <li class="list__menu__mobile__dropdown__item">
+                    <a href="#" class="list__menu__mobile__dropdown__item__link ">Vận Chuyển Container Đường Thủy</a>
+                </li>
+                <li class="list__menu__mobile__dropdown__item">
+                    <a href="#" class="list__menu__mobile__dropdown__item__link ">Vận Chuyển Bắc Nam</a>
+                </li>
+            </ul>
+        </li>
+        <li class="list__item__menu__mobile">
+            <a class="list__item__menu__mobile__link" href="#">Tin Tức</a>
+        </li>
+        <li class="list__item__menu__mobile">
+            <a class="list__item__menu__mobile__link" href="#">Liên Hệ</a>
+        </li>*@
+    </ul>
+    <ul class="list__icon__social" id="mobile__icon__social">
+        <li class="list__item__inline ">
+            <a href="#" class="list__item__inline__link icon__link lg__facebook">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li class="list__item__inline ">
+            <a href="#" class="list__item__inline__link icon__link lg__google">
+                <i class="fa fa-google" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li class="list__item__inline ">
+            <a href="#" class="list__item__inline__link icon__link lg__twitter">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+    <p class="title__mobile__menu">
+        <i class="fa fa-phone" aria-hidden="true"></i> Đường dây nóng: 0901.021.211
+    </p>
+    <p class="title__mobile__menu">
+        <i class="fa fa-map-marker" aria-hidden="true"></i> Địa chỉ: 43 Nguyễn Tri Phương, Phường Tân Phú, Quận Tân Bình, Tp HCM
+    </p>
+</div>

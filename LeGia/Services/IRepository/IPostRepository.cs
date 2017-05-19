@@ -10,5 +10,6 @@ namespace LeGia.Services.IRepository{
         bool CheckName(string name);
         PostModel GetPost(int id);
         IEnumerable<PostModel> GetAllPost();
+        IEnumerable<PostModel> GetMenuItem();
     }
 }

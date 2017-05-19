@@ -29,6 +29,11 @@ namespace LeGia.Services.Repository{
             return GetAll("getAllPost", null);
         }
 
+        public IEnumerable<PostModel> GetMenuItem()
+        {
+            return GetAll("getMenuItems", null);
+        }
+
         public PostModel GetPost(int id)
         {
             var para = new DynamicParameters();

@@ -26,62 +26,7 @@
     <div class="top_button">
         <i class="fa fa-arrow-up" aria-hidden="true"></i>
     </div>
-    <div class="ui sidebar inverted vertical menu" id="mobile__menu">
-        <ul class="list__menu list__menu__mobile">
-            <li class="list__item__menu__mobile">
-                <a class="list__item__menu__mobile__link" href="#">Trang Chủ</a>
-            </li>
-            <li class="list__item__menu__mobile">
-                <a class="list__item__menu__mobile__link" href="#">Giới Thiệu</a>
-            </li>
-            <li class="list__item__menu__mobile">
-                <a class="list__item__menu__mobile__link dropdown__menu__mobile" href="#">Dịch Vụ <i class="fa fa-caret-down dropdown__icon" aria-hidden="true"></i></a>
-                <ul class="list__menu list__menu__mobile__dropdown">
-                    <li class="list__menu__mobile__dropdown__item">
-                        <a href="#" class="list__menu__mobile__dropdown__item__link">Khai Báo Hải Quan</a>
-                    </li>
-                    <li class="list__menu__mobile__dropdown__item">
-                        <a href="#" class="list__menu__mobile__dropdown__item__link">Vận Chuyển Container Đường Bộ</a>
-                    </li>
-                    <li class="list__menu__mobile__dropdown__item">
-                        <a href="#" class="list__menu__mobile__dropdown__item__link ">Vận Chuyển Container Đường Thủy</a>
-                    </li>
-                    <li class="list__menu__mobile__dropdown__item">
-                        <a href="#" class="list__menu__mobile__dropdown__item__link ">Vận Chuyển Bắc Nam</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="list__item__menu__mobile">
-                <a class="list__item__menu__mobile__link" href="#">Tin Tức</a>
-            </li class="list__item__menu__mobile">
-            <li class="list__item__menu__mobile">
-                <a class="list__item__menu__mobile__link" href="#">Liên Hệ</a>
-            </li>
-        </ul>
-        <ul class="list__icon__social" id="mobile__icon__social">
-            <li class="list__item__inline ">
-                <a href="#" class="list__item__inline__link icon__link lg__facebook">
-                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-            <li class="list__item__inline ">
-                <a href="#" class="list__item__inline__link icon__link lg__google">
-                    <i class="fa fa-google" aria-hidden="true"></i>
-                </a>
-            </li>
-            <li class="list__item__inline ">
-                <a href="#" class="list__item__inline__link icon__link lg__twitter">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                </a>
-            </li>
-        </ul>
-        <p class="title__mobile__menu">
-            <i class="fa fa-phone" aria-hidden="true"></i> Đường dây nóng: 0901.021.211
-        </p>
-        <p class="title__mobile__menu">
-            <i class="fa fa-map-marker" aria-hidden="true"></i> Địa chỉ: 43 Nguyễn Tri Phương, Phường Tân Phú, Quận Tân Bình, Tp HCM
-        </p>
-    </div>
+    @await Component.InvokeAsync("MobileMenu")
     <div class="ui sidebar inverted right" id="mobile__search">
         <div class="mobile__search__content">
             <button class="search__box__button__responsive lg__right" id="mobile__search__close">
@@ -137,50 +82,7 @@
                 </ul>
             </div>
             <div class="clearfix"></div>
-            <menu>
-                <ul class="list__menu reset">
-                    <li class="list__item__inline list__item__menu">
-                        <a href="#" class="list__item__menu__link list__item__menu__link__active">Trang Chủ</a>
-                    </li>
-                    <li class="list__item__inline list__item__menu">
-                        <a href="#" class="list__item__menu__link">Giới Thiệu</a>
-                    </li>
-                    <li class="list__item__inline list__item__menu dropdown__menu">
-                        <a href="#" class="list__item__menu__link">Dịch Vụ
-                            <i class="fa fa-caret-down dropdown__icon" aria-hidden="true"></i>
-                        </a>
-                        <ul class="list__menu dropdown__menu__list">
-                            <li class="list__item__menu__dropdown">
-                                <a href="#" class="list__item__menu__link dropdown__menu__list__link">Dịch Vụ Khai Báo Hải Quan</a>
-                            </li>
-                            <li class="list__item__menu__dropdown">
-                                <a href="#" class="list__item__menu__link dropdown__menu__list__link">Dịch Vụ Vận Chuyển Container Đường Bộ</a>
-                            </li>
-                            <li class="list__item__menu__dropdown">
-                                <a href="#" class="list__item__menu__link dropdown__menu__list__link">Dịch Vụ Vận Chuyển Container Đường Thủy</a>
-                            </li>
-                            <li class="list__item__menu__dropdown">
-                                <a href="#" class="list__item__menu__link dropdown__menu__list__link">Dịch Vụ Vận Chuyển Bắc Nam</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="list__item__inline list__item__menu">
-                        <a href="#" class="list__item__menu__link">Tin Tức</a>
-                    </li>
-                    <li class="list__item__inline list__item__menu">
-                        <a href="#" class="list__item__menu__link">Liên Hệ</a>
-                    </li>
-                    <li class="list__item__inline list__item__menu lg__right">
-                        <div class="search__box">
-                            <input type="text" class="search__box__field" name="Search" value="" placeholder="Tìm kiếm...">
-                            <button class="search__box__button">
-                                <i class="fa fa-search" id="icon__change" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </li>
-                    <div class="clearfix"></div>
-                </ul>
-            </menu>
+            @await Component.InvokeAsync("HeadMenu")
         </header>
         <main>
             <div class="slider">
@@ -434,70 +336,7 @@
                 </div>
             </div>
         </main>
-        <footer>
-            <h3 class="footer__brandname__h3">
-                Công ty TNHH Xuất Nhập Khẩu - Thương Mại - Dịch Vụ - Vận Tải
-            </h3>
-            <h1 class="footer__brandname__h1">
-                Lê Gia
-            </h1>
-            <p class="footer__address">
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Địa chỉ: 43 Nguyễn Tri Phương, Phường Tân Phú, Quận Tân Bình, Tp HCM
-            </p>
-            <div class="row footer__header">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 footer__col__box">
-                    <h2 class="footer__box__title">Liên hệ với chúng tôi</h2>
-                    <ul class="list__menu">
-                        <li class="list__footer__item">Số điện thoại: 0901 123 456 - 0933 422 433</li>
-                        <li class="list__footer__item">Email: legia@gmail.com</li>
-                        <li class="list__footer__item">Website: vantailegia.com</li>
-                    </ul>
-                    <ul class="list__icon__social" id="footer__icon__social">
-                        <li class="list__item__inline ">
-                            <a href="#" class="list__item__inline__link icon__link lg__facebook">
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li class="list__item__inline ">
-                            <a href="#" class="list__item__inline__link icon__link lg__google">
-                                <i class="fa fa-google" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li class="list__item__inline ">
-                            <a href="#" class="list__item__inline__link icon__link lg__twitter">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 footer__col__box">
-                    <h2 class="footer__box__title">Các dịch vụ của chúng tôi</h2>
-                    <ul class="list__menu">
-                        <li class="list__footer__item">
-                            <a href="#">Dịch vụ khai báo Hải Quan</a>
-                        </li>
-                        <li class="list__footer__item">
-                            <a href="#">Dịch vụ vận chuyển Bắc Nam</a>
-                        </li>
-                        <li class="list__footer__item">
-                            <a href="#">Dịch vụ vận chuyển container đường bộ</a>
-                        </li>
-                        <li class="list__footer__item">
-                            <a href="#">Dịch vụ vận chuyển container đường thủy</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 footer__col__box">
-                    <h2 class="footer__box__title">Giới thiệu về chúng tôi</h2>
-                    <p class="footer__box__title__about">Công ty chúng tôi có đội ngũ cán bộ, nhân viên giỏi chuyên môn nghiệp vụ, rất giàu kinh nghiệm trong quản lý, điều hành vận tải, sẵn sàng tư vấn miễn phí cho khách hàng. Khi sử dụng dịch vụ chúng tôi quý khách chỉ phải bỏ ra phí dịch
-                        vụ vận chuyển tiết kiệm nhất, nhưng sẽ nhận được chất lượng dịch vụ tốt nhất.</p>
-                </div>
-                <div class="clearfix"></div>
-                <div class="footer__copyright">
-                    <p>Bản quyền © 2016 thuộc về Công ty TNHH Xuất Nhập Khẩu - Thương Mại - Dịch Vụ - Vận Tải Lê Gia</p>
-                </div>
-            </div>
-        </footer>
+        @await Component.InvokeAsync("Footer")
     </div>
     <div class="container body-content">
         @RenderBody()

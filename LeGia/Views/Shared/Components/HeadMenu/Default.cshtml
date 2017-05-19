@@ -1,0 +1,81 @@
+﻿@model LeGia.Models.MenuViewModel
+
+<menu>
+    <ul class="list__menu reset">
+        @foreach (var h in Model.Heads)
+        {
+            @if (h.Orders == 1)
+            {
+                <li class="list__item__inline list__item__menu">
+                    <a href="#" class="list__item__menu__link list__item__menu__link__active">@h.Name</a>
+                </li>
+            }
+            else
+            {
+                var item = Model.Items.Where(i => i.CategoryId == h.Id).ToList();
+                if (item.Count > 0)
+                {
+                    <li class="list__item__inline list__item__menu dropdown__menu">
+                        <a href="#" class="list__item__menu__link">@h.Name<i class="fa fa-caret-down dropdown__icon" aria-hidden="true"></i></a>
+                        <ul class="list__menu dropdown__menu__list">
+                            @foreach (var i in item)
+                            {
+                                <li class="list__item__menu__dropdown">
+                                    <a href="#" class="list__item__menu__link dropdown__menu__list__link">@i.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li class="list__item__inline list__item__menu">
+                        <a href="#" class="list__item__menu__link">@h.Name</a>
+                    </li>
+                }
+            }
+        }
+        @*<li class="list__item__inline list__item__menu">
+            <a href="#" class="list__item__menu__link list__item__menu__link__active">Trang Chủ</a>
+        </li>
+        <li class="list__item__inline list__item__menu">
+            <a href="#" class="list__item__menu__link">Giới Thiệu</a>
+        </li>
+        <li class="list__item__inline list__item__menu dropdown__menu">
+            <a href="#" class="list__item__menu__link">
+                Dịch Vụ
+                <i class="fa fa-caret-down dropdown__icon" aria-hidden="true"></i>
+            </a>
+            <ul class="list__menu dropdown__menu__list">
+                <li class="list__item__menu__dropdown">
+                    <a href="#" class="list__item__menu__link dropdown__menu__list__link">Dịch Vụ Khai Báo Hải Quan</a>
+                </li>
+                <li class="list__item__menu__dropdown">
+                    <a href="#" class="list__item__menu__link dropdown__menu__list__link">Dịch Vụ Vận Chuyển Container Đường Bộ</a>
+                </li>
+                <li class="list__item__menu__dropdown">
+                    <a href="#" class="list__item__menu__link dropdown__menu__list__link">Dịch Vụ Vận Chuyển Container Đường Thủy</a>
+                </li>
+                <li class="list__item__menu__dropdown">
+                    <a href="#" class="list__item__menu__link dropdown__menu__list__link">Dịch Vụ Vận Chuyển Bắc Nam</a>
+                </li>
+            </ul>
+        </li>
+        <li class="list__item__inline list__item__menu">
+            <a href="#" class="list__item__menu__link">Tin Tức</a>
+        </li>
+        <li class="list__item__inline list__item__menu">
+            <a href="#" class="list__item__menu__link">Liên Hệ</a>
+        </li>*@
+        <li class="list__item__inline list__item__menu lg__right">
+            <div class="search__box">
+                <input type="text" class="search__box__field" name="Search" value="" placeholder="Tìm kiếm...">
+                <button class="search__box__button">
+                    <i class="fa fa-search" id="icon__change" aria-hidden="true"></i>
+                </button>
+            </div>
+        </li>
+        <div class="clearfix"></div>
+    </ul>
+</menu>
+
