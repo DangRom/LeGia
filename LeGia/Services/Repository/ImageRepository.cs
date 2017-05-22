@@ -36,6 +36,16 @@ namespace LeGia.Services.Repository{
             return GetById("getImageById", para);
         }
 
+        public IEnumerable<ImageModel> GetLogo()
+        {
+            return GetAll("getLogo", null);
+        }
+
+        public IEnumerable<ImageModel> GetSlide()
+        {
+            return GetAll("getSlide", null);
+        }
+
         public void Insert(ImageModel model)
         {
             Execute("insertImage", GetParams(model));

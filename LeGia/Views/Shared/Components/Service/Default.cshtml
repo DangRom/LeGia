@@ -1,0 +1,31 @@
+@model IEnumerable<LeGia.Models.ServiceViewModel>
+
+<div class="lg__content__box ui segment">
+                    <div class="lg__content__box__header">
+                        <h1 class="lg__content__box__header__title">Dịch Vụ Của Chúng Tôi</h1>
+                    </div>
+                    <div class="lg__content__box__content">
+                        <div class="row">
+                            <div id="slider__service" class="owl-carousel">
+                                @foreach(var s in Model)
+                                {
+                                    <div class="item">
+                                        <div class="service__box" style="background-image: url(@s.Image)">
+                                            <a href="#" class="service__box__title">
+                                            @s.Name
+                                        </a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <ul class="list__menu list__slider__control">
+                                <li class="list__item__inline list__slider__control__item" id="control__prev">
+                                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                </li>
+                                <li class="list__item__inline list__slider__control__item" id="control__next">
+                                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>

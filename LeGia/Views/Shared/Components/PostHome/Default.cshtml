@@ -1,0 +1,46 @@
+@model IEnumerable<LeGia.Models.PostViewModel>
+
+<div class="col__lg__8">
+                        <div class="ui segment">
+                            <div class="lg__content__box__header">
+                                <h1 class="lg__content__box__header__title">Tin Tức</h1>
+                            </div>
+                            <div class="lg__content__box__content">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col__border__right">
+                                    <div class="main__article">
+                                        <a href="#">
+                                            <div class="main__article__box__img">
+                                                <img src="@ViewBag.Primary.Image" alt="@ViewBag.Primary.Name" class="main__article__img">
+                                            </div>
+                                            <div class="main__article__content">
+                                                <span class="main__article__content__date">
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                </span>
+                                                <h1 class="main__article__content__title">@ViewBag.Primary.Name.</h1>
+                                                <p>@ViewBag.Primary.ShortContent</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="main__article__box">
+                                        <div class="hot__new__article">
+                                            <p href="#">Tin tức khác</p>
+                                        </div>
+                                        <ul class="list__menu list__article">
+                                            @foreach(var p in Model)
+                                            {
+                                                <li class="list__article__item">
+                                                    <a href="#" class="list__article__item__link">
+                                                        @p.Name.
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                        <button class="ui button lg__button lg__right">Xem thêm</button>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>

@@ -13,6 +13,7 @@ namespace LeGia.Services.Model
         public int CategoryId {get; set;}
         public string CategoryName {get;set;}
         public bool Activated {get; set;}
+        public string ShortContent { get; set; }
         public string Content {get; set;}
     }
 }

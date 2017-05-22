@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace LeGia.Models
 {
-    public class FooterViewModel
-    {
+    public class FooterViewModel{
+        public CompanyViewModel Company { get; set; }
+        public IEnumerable<MenuItemViewModel> Service { get; set; }
     }
 }

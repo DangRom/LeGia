@@ -1,21 +1,21 @@
-﻿
+﻿@model LeGia.Models.FooterViewModel
 
 <footer>
-    <h3 class="footer__brandname__h3">
-        Công ty TNHH Xuất Nhập Khẩu - Thương Mại - Dịch Vụ - Vận Tải
-    </h3>
+    <!--<h3 class="footer__brandname__h3">
+        @Model.Company.Name
+    </h3>-->
     <h1 class="footer__brandname__h1">
-        Lê Gia
+        @Model.Company.Name
     </h1>
     <p class="footer__address">
-        <i class="fa fa-map-marker" aria-hidden="true"></i> Địa chỉ: 43 Nguyễn Tri Phương, Phường Tân Phú, Quận Tân Bình, Tp HCM
+        <i class="fa fa-map-marker" aria-hidden="true"></i> @Model.Company.Address
     </p>
     <div class="row footer__header">
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 footer__col__box">
             <h2 class="footer__box__title">Liên hệ với chúng tôi</h2>
             <ul class="list__menu">
-                <li class="list__footer__item">Số điện thoại: 0901 123 456 - 0933 422 433</li>
-                <li class="list__footer__item">Email: legia@gmail.com</li>
+                <li class="list__footer__item">Số điện thoại: @Model.Company.PhoneNumber</li>
+                <li class="list__footer__item">Email: @Model.Company.Email</li>
                 <li class="list__footer__item">Website: vantailegia.com</li>
             </ul>
             <ul class="list__icon__social" id="footer__icon__social">
@@ -39,18 +39,12 @@
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 footer__col__box">
             <h2 class="footer__box__title">Các dịch vụ của chúng tôi</h2>
             <ul class="list__menu">
-                <li class="list__footer__item">
-                    <a href="#">Dịch vụ khai báo Hải Quan</a>
-                </li>
-                <li class="list__footer__item">
-                    <a href="#">Dịch vụ vận chuyển Bắc Nam</a>
-                </li>
-                <li class="list__footer__item">
-                    <a href="#">Dịch vụ vận chuyển container đường bộ</a>
-                </li>
-                <li class="list__footer__item">
-                    <a href="#">Dịch vụ vận chuyển container đường thủy</a>
-                </li>
+                @foreach(var s in Model.Service)
+                {
+                    <li class="list__footer__item">
+                        <a href="#">@s.Name</a>
+                    </li>
+                }
             </ul>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 footer__col__box">
@@ -62,7 +56,7 @@
         </div>
         <div class="clearfix"></div>
         <div class="footer__copyright">
-            <p>Bản quyền © 2016 thuộc về Công ty TNHH Xuất Nhập Khẩu - Thương Mại - Dịch Vụ - Vận Tải Lê Gia</p>
+            <p>Bản quyền © 2016 thuộc về @Model.Company.Name</p>
         </div>
     </div>
 </footer>

@@ -14,6 +14,11 @@ namespace LeGia.Services.Repository{
             return db.Query<CompanyModel>("findCompany", null, null, false, null, CommandType.StoredProcedure).SingleOrDefault();
         }
 
+        public CompanyModel GetCompanyForHome()
+        {
+            return db.Query<CompanyModel>("getCompanyForHome", null, null, false, null, CommandType.StoredProcedure).SingleOrDefault();
+        }
+
         public void Update(CompanyModel model)
         {
             var para = new DynamicParameters();

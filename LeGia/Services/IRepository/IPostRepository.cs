@@ -11,5 +11,9 @@ namespace LeGia.Services.IRepository{
         PostModel GetPost(int id);
         IEnumerable<PostModel> GetAllPost();
         IEnumerable<PostModel> GetMenuItem();
+        IEnumerable<PostModel> GetPostForFooter();
+        IEnumerable<PostModel> GetService();
+        IEnumerable<PostModel> GetPostsForHomePage();
+        IEnumerable<PostModel> GetPostsForList(string catealias);
     }
 }

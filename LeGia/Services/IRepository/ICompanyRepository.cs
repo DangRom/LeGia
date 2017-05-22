@@ -5,5 +5,6 @@ namespace LeGia.Services.IRepository{
     public interface ICompanyRepository : IRepositoriesBase<CompanyModel>{
         CompanyModel GetCompany();
         void Update(CompanyModel model);
+        CompanyModel GetCompanyForHome();
     }
 }

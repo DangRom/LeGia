@@ -41,6 +41,28 @@ namespace LeGia.Services.Repository{
             return GetById("getPostById", para);
         }
 
+        public IEnumerable<PostModel> GetPostForFooter()
+        {
+            return GetAll("getPostForFooter", null);
+        }
+
+        public IEnumerable<PostModel> GetPostsForHomePage()
+        {
+            return GetAll("getPostForHomePage", null);
+        }
+
+        public IEnumerable<PostModel> GetPostsForList(string catealias)
+        {
+            var para = new DynamicParameters();
+            para.Add("pCateAlias", catealias, DbType.String, ParameterDirection.Input);
+            return GetAll("getPostForList", para);
+        }
+
+        public IEnumerable<PostModel> GetService()
+        {
+            return GetAll("getServices", null);
+        }
+
         public void Insert(PostModel model)
         {
             Execute("insertPost", GetParams(model));

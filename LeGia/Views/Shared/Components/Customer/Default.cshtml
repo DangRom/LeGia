@@ -1,0 +1,27 @@
+@model IEnumerable<LeGia.Models.CustomerViewModel>
+
+<div class="lg__content__box ui segment">
+                    <div class="lg__content__box__header">
+                        <h1 class="lg__content__box__header__title">Đối Tác Của Chúng Tôi</h1>
+                    </div>
+                    <div class="lg__content__box__content">
+                        <div class="row">
+                            <div id="slider__partner" class="owl-carousel">
+                                @foreach(var c in Model)
+                                {
+                                    <div class="item">
+                                        <img src="@c.Image" class="img__partner">
+                                    </div>
+                                }
+                            </div>
+                            <ul class="list__menu list__slider__control">
+                                <li class="list__item__inline list__slider__control__item" id="partner__control__prev">
+                                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                </li>
+                                <li class="list__item__inline list__slider__control__item" id="partner__control__next">
+                                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>

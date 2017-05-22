@@ -10,5 +10,7 @@ namespace LeGia.Services.IRepository{
         void Update(ImageModel model);
         void Delete(int id);
         ImageModel GetImage(int id);
+        IEnumerable<ImageModel> GetSlide();
+        IEnumerable<ImageModel> GetLogo();
     }
 }
