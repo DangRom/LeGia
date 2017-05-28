@@ -1,8 +1,9 @@
 using LeGia.Services.IRepository;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using LeGia.Models;
 
 namespace LeGia.Controllers{
-    [RouteAttribute("bai-viet")]
     public class PostController : Controller{
         private ICategoryRepository _cateRepo;
         private IPostRepository _postRepo;
@@ -12,11 +13,18 @@ namespace LeGia.Controllers{
             _postRepo = postRepo;
         }
 
-        [RouteAttribute("/{alias}")]
-        public IActionResult Index(string alias){
+        [RouteAttribute("/danh-sach/{alias}")]
+        public IActionResult ListPost(string alias){
             try{
-                var posts = _postRepo.GetPostsForList(alias);
-                return View();
+                var postModels = _postRepo.GetPostsForList(alias);
+                var post = postModels.Select(p => new PostViewModel{
+                    Id = p.Id,
+                    Name = p.Name,
+                    Alias = p.Alias,
+                    Image = p.Image,
+                    ShortContent = p.ShortContent
+                }).ToList();
+                return View(post);
             }catch{
                 return View("Error");
             }

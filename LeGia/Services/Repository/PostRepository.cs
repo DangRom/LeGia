@@ -54,7 +54,7 @@ namespace LeGia.Services.Repository{
         public IEnumerable<PostModel> GetPostsForList(string catealias)
         {
             var para = new DynamicParameters();
-            para.Add("pCateAlias", catealias, DbType.String, ParameterDirection.Input);
+            para.Add("pCateAlias", catealias, dbType:DbType.String, direction:ParameterDirection.Input);
             return GetAll("getPostForList", para);
         }
 
