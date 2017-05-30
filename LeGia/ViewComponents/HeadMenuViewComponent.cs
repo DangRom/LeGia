@@ -27,6 +27,7 @@ namespace LeGia.ViewComponents
                     var headmenu = headmenuModel.Select(h => new HeadMenuViewModel{
                         Id = h.Id,
                         Name = h.Name,
+                        Alias = h.Alias,
                         Orders = h.Orders
                     }).ToList();
                     menu.Heads = headmenu;
@@ -41,6 +42,7 @@ namespace LeGia.ViewComponents
                     {
                         Id = i.Id,
                         Name = i.Name,
+                        Alias = i.Alias,
                         CategoryId = i.CategoryId
                     }).ToList();
                     menu.Items = menuitem;
@@ -49,8 +51,7 @@ namespace LeGia.ViewComponents
                     menu.Items = SystemVariable.MenuItem;
                 }
                 return View(menu);
-            }
-            catch { throw; }
+            }catch { throw; }
         }
     }
 }

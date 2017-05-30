@@ -41,7 +41,8 @@ namespace LeGia.ViewComponents
                     var menuitemModel = await Task.Factory.StartNew(() => _postRepo.GetPostForFooter());
                     var services = menuitemModel.Select(s => new MenuItemViewModel{
                         Id = s.Id,
-                        Name = s.Name
+                        Name = s.Name,
+                        Alias = s.Alias
                     }).ToList();
                     footer.Service = services;
                 }else{

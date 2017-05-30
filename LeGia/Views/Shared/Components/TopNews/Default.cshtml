@@ -1,0 +1,29 @@
+@model IEnumerable<LeGia.Models.PostViewModel>
+
+
+<div class="hot__new__article">
+                                <p href="#">Tin tức nổi bật</p>
+                            </div>
+                            <ul class="list__menu list__article__detail">
+                                @foreach(var t in Model)
+                                {
+                                    var tlink = "/bai-viet/" + t.Alias;
+                                    <li class="list__article__detail__item">
+                                        <div class="main__article">
+                                            <a href="@tlink">
+                                                <div class="main__article__box__img">
+                                                    <img src="@t.Image" alt="Vân tải container" class="main__article__img">
+                                                </div>
+                                                <div class="main__article__content">
+                                                    <h1 class="main__article__content__title">@t.Name</h1>
+                                                    <p>@t.ShortContent</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                }
+                                <li class="list__article__detail__item lg__right">
+                                    <button onclick="location.href='/danh-sach/tin-tuc'" class="ui button lg__pagination__item">Xem thêm</button>
+                                </li>
+                                <div class="clearfix"></div>
+                            </ul>

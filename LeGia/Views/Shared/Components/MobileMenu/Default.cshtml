@@ -7,7 +7,7 @@
             <li class="list__item__menu__mobile">
                 <a class="list__item__menu__mobile__link" href="#">@h.Name</a>
                 <ul class="list__menu list__menu__mobile__dropdown">
-                    @{ var items = @Model.Items.Where(i => i.CategoryId == h.Id);}
+                    @{ var items = Model.Items.Where(i => i.CategoryId == h.Id);}
                     @foreach (var i in items)
                     {
                         <li class="list__menu__mobile__dropdown__item">

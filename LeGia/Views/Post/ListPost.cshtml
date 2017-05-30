@@ -22,16 +22,14 @@
                         <div class="row">
                             @foreach(var p in Model)
                             {
+                                var plink = "/bai-viet/" + @p.Alias;
                                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 box__main__article">
                                     <div class="main__article">
-                                        <a href="#">
+                                        <a href="@plink">
                                             <div class="main__article__box__img">
                                                 <img src="@p.Image" alt="@p.Name" class="main__article__img">
                                             </div>
                                             <div class="main__article__content">
-                                                <span class="main__article__content__date">
-                                                        <i class="fa fa-calendar" aria-hidden="true"></i> 20/2/2017
-                                                    </span>
                                                 <h1 class="main__article__content__title">@p.Name</h1>
                                                 <p>@p.ShortContent</p>
                                             </div>
