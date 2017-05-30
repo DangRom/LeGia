@@ -21,7 +21,15 @@
                         <ul class="list__menu dropdown__menu__list">
                             @foreach (var i in item)
                             {
-                                var dlink = "/bai-viet/" + @i.Alias;
+                                var dlink = "";
+                                if(h.Orders == 2)
+                                {
+                                    dlink = "/gioi-thieu/" + @i.Alias;
+                                }
+                                else
+                                {
+                                    dlink = "/bai-viet/" + @i.Alias;
+                                }
                                 <li class="list__item__menu__dropdown">
                                     <a href="@dlink" class="list__item__menu__link dropdown__menu__list__link">@i.Name</a>
                                 </li>
@@ -31,7 +39,15 @@
                 }
                 else
                 {
-                    var plink = "/" + @h.Alias;
+                    var plink = "";
+                    if(h.Orders == 5)
+                    {
+                        plink = "/lien-he";
+                    }
+                    else
+                    {
+                        plink = "/gioi-thieu/" + @h.Alias;
+                    }
                     <li class="list__item__inline list__item__menu">
                         <a href="@plink" class="list__item__menu__link">@h.Name</a>
                     </li>

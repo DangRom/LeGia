@@ -1,0 +1,33 @@
+﻿@model LeGia.Models.PostViewModel
+
+
+<div class="lg__content">
+    <div class="lg__breadcrumb">
+        <ul class="list__menu reset lg__breadcrumb__list">
+            <li class="list__item__inline lg__breadcrumb__list__item">
+                <a href="#" class="lg__breadcrumb__list__item__link">Trang Chủ</a>
+            </li>
+            <li class="list__item__inline lg__breadcrumb__list__item">
+                <a href="#" class="lg__breadcrumb__list__item__link ">Giới Thiệu</a>
+            </li>
+        </ul>
+    </div>
+    <div class="lg__content__box ui segment">
+        <div class="lg__content__box__header">
+            <h1 class="lg__content__box__header__title">@Model.Name</h1>
+        </div>
+        @Html.Raw(Model.Content)
+    </div>
+    @await Component.InvokeAsync("Customer")
+</div>
+
+
+
+
+
+<div class="lg__content__box ui segment">
+    <div class="lg__content__box__header">
+        <h1 class="lg__content__box__header__title">Giới Thiệu Về Chúng Tôi</h1>
+    </div>
+
+</div>

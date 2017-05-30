@@ -9,9 +9,10 @@
                             <div id="slider__service" class="owl-carousel">
                                 @foreach(var s in Model)
                                 {
+                                    var slink = "/bai-viet/" + @s.Alias;
                                     <div class="item">
                                         <div class="service__box" style="background-image: url(@s.Image)">
-                                            <a href="#" class="service__box__title">
+                                            <a href="@slink" class="service__box__title">
                                             @s.Name
                                         </a>
                                         </div>

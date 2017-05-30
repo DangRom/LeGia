@@ -1,4 +1,4 @@
-
+@model LeGia.Models.ContactViewModel
 
 <div class="col__lg__4">
                         <div class="ui segment">
@@ -6,22 +6,27 @@
                                 <h1 class="lg__content__box__header__title">Liên Hệ</h1>
                             </div>
                             <div class="lg__content__box__content">
-                                <form class="ui form" method="post">
+                                <form class="ui form" method="post" asp-controller="lien-he", asp-action="Index">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="field">
                                         <label>Tên của bạn</label>
-                                        <input type="text" required name="yourname" placeholder="Ví dụ: Nguyễn Văn A">
+                                        <input asp-for="FullName" required="" name="fullname" placeholder="Ví dụ: Nguyễn Văn A">
+                                        <span asp-validation-for="FullName" class="text-danger"></span>
                                     </div>
                                     <div class="field">
                                         <label>Số điện thoại</label>
-                                        <input type="text" required name="phone" placeholder="Ví dụ: 0909123456">
+                                        <input asp-for="Phone" required="" name="phone" placeholder="Ví dụ: 0909123456">
+                                        <span asp-validation-for="Phone" class="text-danger"></span>
                                     </div>
                                     <div class="field">
                                         <label>Email</label>
-                                        <input type="email" required name="email" placeholder="Ví dụ: nguyenvana@gmail.com">
+                                        <input asp-for="Email" required="" name="email" placeholder="Ví dụ: nguyenvana@gmail.com">
+                                        <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
                                     <div class="field">
                                         <label>Nội dụng</label>
-                                        <textarea id="contact__textarea" rows="4" required></textarea>
+                                        <textarea asp-for="Content" id="contact__textarea" rows="2" required=""></textarea>
+                                        <span asp-validation-for="Content" class="text-danger"></span>
                                     </div>
                                     <button class="ui button lg__right green" type="submit">Gửi</button>
                                     <div class="clearfix"></div>

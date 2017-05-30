@@ -13,9 +13,11 @@ namespace LeGia.ViewComponents
     public class MobileMenuViewComponent : ViewComponent{
         private ICategoryRepository _cateRepo;
         private IPostRepository _postRepo;
-        public MobileMenuViewComponent(ICategoryRepository cateRepo, IPostRepository postRepo){
+        private ICompanyRepository _companyRepo;
+        public MobileMenuViewComponent(ICategoryRepository cateRepo, IPostRepository postRepo, ICompanyRepository companyRepo){
             _cateRepo = cateRepo;
             _postRepo = postRepo;
+            _companyRepo = companyRepo;
         }
 
         public async Task<IViewComponentResult> InvokeAsync(){
@@ -50,6 +52,22 @@ namespace LeGia.ViewComponents
                     SystemVariable.MenuItem = menuitem;
                 }else{
                     menu.Items = SystemVariable.MenuItem;
+                }
+
+                if (SystemVariable.Company == null){
+                    var companyModel = await Task.Factory.StartNew(() => _companyRepo.GetCompanyForHome());
+                    var company = new CompanyViewModel(){
+                        Name = companyModel.Name,
+                        Address = companyModel.Address,
+                        Email = companyModel.Email,
+                        PhoneNumber = companyModel.PhoneNumber,
+                        TaxCode = companyModel.TaxCode,
+                        HotLine = companyModel.HotLine
+                    };
+                    ViewBag.Company = company;
+                    SystemVariable.Company = company;
+                }else{
+                    ViewBag.Company = SystemVariable.Company;
                 }
                 return View(menu);
             }

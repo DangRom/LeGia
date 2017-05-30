@@ -46,7 +46,8 @@ namespace LeGia.ViewComponents
                     }).ToList();
                     footer.Service = services;
                 }else{
-                    var services = SystemVariable.MenuItem.Where(s => s.CategoryId == 3).ToList().Take(4);
+                    var cate = SystemVariable.HeadMenu.Where(c => c.Orders == 3).FirstOrDefault().Id;
+                    var services = SystemVariable.MenuItem.Where(s => s.CategoryId == cate).Take(4).ToList();
                     footer.Service = services;
                 }
 

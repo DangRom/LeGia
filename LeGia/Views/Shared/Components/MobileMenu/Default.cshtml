@@ -4,20 +4,88 @@
     <ul class="list__menu list__menu__mobile">
         @foreach (var h in Model.Heads)
         {
-            <li class="list__item__menu__mobile">
-                <a class="list__item__menu__mobile__link" href="#">@h.Name</a>
-                <ul class="list__menu list__menu__mobile__dropdown">
-                    @{ var items = Model.Items.Where(i => i.CategoryId == h.Id);}
-                    @foreach (var i in items)
+            if (h.Orders == 1)
+            {
+                <li class="list__item__menu__mobile">
+                    <a class="list__item__menu__mobile__link" href="/">@h.Name</a>
+                </li>
+            }
+            else
+            {
+                var items = Model.Items.Where(i => i.CategoryId == @h.Id).ToList();
+                if (items.Count > 0)
+                {
+                    <li class="list__item__menu__mobile">
+                        <a class="list__item__menu__mobile__link dropdown__menu__mobile" href="#">@h.Name<i class="fa fa-caret-down dropdown__icon" aria-hidden="true"></i></a>
+                        <ul class="list__menu list__menu__mobile__dropdown" style="display: none;">
+                            @foreach (var i in items)
+                            {
+                                var ilink = "";
+                                if(@h.Orders == 2)
+                                {
+                                    ilink = "/gioi-thieu/" + @i.Alias;
+                                }
+                                else
+                                {
+                                    ilink = "/bai-viet/" + @i.Alias;
+                                }
+                                <li class="list__menu__mobile__dropdown__item">
+                                    <a href="@ilink" class="list__menu__mobile__dropdown__item__link">@i.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    var plink = "";
+                    if (@h.Orders == 5)
                     {
-                        <li class="list__menu__mobile__dropdown__item">
-                            <a href="#" class="list__menu__mobile__dropdown__item__link">@i.Name</a>
-                        </li>
+                        plink = "/lien-he";
                     }
-                </ul>
-            </li>
+                    else
+                    {
+                        plink = "/gioi-thieu/" + @h.Alias;
+                    }
+                    <li class="list__item__menu__mobile">
+                        <a class="list__item__menu__mobile__link" href="@plink">@h.Name</a>
+                    </li>
+                }
+            }
         }
-        @*<li class="list__item__menu__mobile">
+    </ul>
+    <ul class="list__icon__social" id="mobile__icon__social">
+        <li class="list__item__inline ">
+            <a href="#" class="list__item__inline__link icon__link lg__facebook">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li class="list__item__inline ">
+            <a href="#" class="list__item__inline__link icon__link lg__google">
+                <i class="fa fa-google" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li class="list__item__inline ">
+            <a href="#" class="list__item__inline__link icon__link lg__twitter">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+    <p class="title__mobile__menu">
+        <i class="fa fa-phone" aria-hidden="true"></i> Đường dây nóng: @ViewBag.Company.HotLine
+    </p>
+    <p class="title__mobile__menu">
+        <i class="fa fa-map-marker" aria-hidden="true"></i> Địa chỉ: @ViewBag.Company.Address
+    </p>
+</div>
+
+
+
+
+
+@*<div class="ui sidebar inverted vertical menu" id="mobile__menu">
+    <ul class="list__menu list__menu__mobile">
+        <li class="list__item__menu__mobile">
             <a class="list__item__menu__mobile__link" href="#">Trang Chủ</a>
         </li>
         <li class="list__item__menu__mobile">
@@ -45,7 +113,7 @@
         </li>
         <li class="list__item__menu__mobile">
             <a class="list__item__menu__mobile__link" href="#">Liên Hệ</a>
-        </li>*@
+        </li>
     </ul>
     <ul class="list__icon__social" id="mobile__icon__social">
         <li class="list__item__inline ">
@@ -70,4 +138,4 @@
     <p class="title__mobile__menu">
         <i class="fa fa-map-marker" aria-hidden="true"></i> Địa chỉ: 43 Nguyễn Tri Phương, Phường Tân Phú, Quận Tân Bình, Tp HCM
     </p>
-</div>
+</div>*@

@@ -37,6 +37,7 @@ namespace LeGia
             services.AddSingleton<ICategoryRepository, CategoryRepository>();
             services.AddSingleton<IImageRepository, ImageRepository>();
             services.AddSingleton<IPostRepository, PostRepository>();
+            services.AddSingleton<IContactRepository, ContactRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

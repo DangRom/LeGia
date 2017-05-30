@@ -47,5 +47,22 @@ namespace LeGia.Controllers{
                 return View("Error");
             }
         }
+
+        [Route("/gioi-thieu/{alias}")]
+        public async Task<ActionResult> About(string alias){
+            try{
+                var postModel = await Task.Factory.StartNew(() => _postRepo.GetPostDetail(alias));
+                var post = new PostViewModel(){
+                    Id = postModel.Id,
+                    Name = postModel.Name,
+                    Alias = postModel.Alias,
+                    Content = postModel.Content
+                };
+                return View(post);
+            }
+            catch{
+                return View("error");
+            }
+        }
     }
 }
