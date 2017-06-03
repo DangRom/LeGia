@@ -4,6 +4,7 @@ using System.Linq;
 using LeGia.Models;
 using System.Threading.Tasks;
 using System;
+using LeGia.Commons;
 
 namespace LeGia.Controllers{
     public class PostController : Controller{
@@ -26,6 +27,7 @@ namespace LeGia.Controllers{
                     Image = p.Image,
                     ShortContent = p.ShortContent
                 }).ToList();
+                ViewBag.BackLink = GetBackLinkCategory(alias);
                 return View(post);
             }catch{
                 return View("Error");
@@ -42,6 +44,7 @@ namespace LeGia.Controllers{
                     Alias = postModel.Alias,
                     Content = postModel.Content
                 };
+                ViewBag.BackLink = GetBackLinkPost(alias);
                 return View(post);
             }catch{
                 return View("Error");
@@ -63,6 +66,24 @@ namespace LeGia.Controllers{
             catch{
                 return View("error");
             }
+        }
+
+        private BacklinkViewModel GetBackLinkCategory(string alias){
+            var backlink = new BacklinkViewModel(){
+                Name = SystemVariable.HeadMenu.FirstOrDefault(b => b.Alias == alias).Name.ToString(),
+                Alias = alias
+            };
+            return backlink;
+        }
+
+        private BacklinkViewModel GetBackLinkPost(string alias){
+            var cateId = SystemVariable.MenuItem.FirstOrDefault(p => p.Alias == alias).CategoryId.ToString();
+            var category = SystemVariable.HeadMenu.FirstOrDefault(c => c.Id == int.Parse(cateId));
+            var backlink = new BacklinkViewModel(){
+                Name = category.Name,
+                Alias = category.Alias
+            };
+            return backlink;
         }
     }
 }

@@ -4,9 +4,7 @@
     <!--<h3 class="footer__brandname__h3">
         @Model.Company.Name
     </h3>-->
-    <h1 class="footer__brandname__h1">
-        @Model.Company.Name
-    </h1>
+    <h3 class="footer__brandname__h3">@Model.Company.Name</h3>
     <p class="footer__address">
         <i class="fa fa-map-marker" aria-hidden="true"></i> @Model.Company.Address
     </p>
@@ -41,8 +39,9 @@
             <ul class="list__menu">
                 @foreach(var s in Model.Service)
                 {
+                    var plink = "/bai-viet/" + @s.Alias;
                     <li class="list__footer__item">
-                        <a href="#">@s.Name</a>
+                        <a href="@plink">@s.Name</a>
                     </li>
                 }
             </ul>

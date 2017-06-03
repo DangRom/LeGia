@@ -5,10 +5,14 @@
     <div class="lg__breadcrumb">
         <ul class="list__menu reset lg__breadcrumb__list">
             <li class="list__item__inline lg__breadcrumb__list__item">
-                <a href="#" class="lg__breadcrumb__list__item__link">Trang Chủ</a>
+                <a href="/" class="lg__breadcrumb__list__item__link">Trang Chủ</a>
             </li>
             <li class="list__item__inline lg__breadcrumb__list__item">
-                <a href="#" class="lg__breadcrumb__list__item__link ">Giới Thiệu</a>
+                <a href="/gioi-thieu" class="lg__breadcrumb__list__item__link ">Giới Thiệu</a>
+            </li>
+            <li class="list__item__inline lg__breadcrumb__list__item">
+                 @{ var pl = "/bai-gioi-thieu/" + Model.Alias; }
+                 <a href="@pl" class="lg__breadcrumb__list__item__link ">@Model.Name</a>
             </li>
         </ul>
     </div>

@@ -9,8 +9,9 @@
                         <li class="list__item__inline lg__breadcrumb__list__item">
                             <a href="/" class="lg__breadcrumb__list__item__link">Trang Chủ</a>
                         </li>
+                        @{ var cl = "/danh-sach/" + ViewBag.BackLink.Alias;}
                         <li class="list__item__inline lg__breadcrumb__list__item">
-                            <a href="/" class="lg__breadcrumb__list__item__link ">Tin tức</a>
+                            <a href="@cl" class="lg__breadcrumb__list__item__link ">@ViewBag.BackLink.Name</a>
                         </li>
                     </ul>
                 </div>
