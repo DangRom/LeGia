@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using LeGia.Areas.Admin.Models;
 using LeGia.Services.IRepository;
 using LeGia.Services.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LeGia.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class PostController : Controller
     {
         private ICategoryRepository _categoryRepo;

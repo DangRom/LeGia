@@ -6,6 +6,7 @@ using LeGia.Services.IRepository;
 using LeGia.Services.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -38,11 +39,20 @@ namespace LeGia
             services.AddSingleton<IImageRepository, ImageRepository>();
             services.AddSingleton<IPostRepository, PostRepository>();
             services.AddSingleton<IContactRepository, ContactRepository>();
+            services.AddSingleton<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseCookieAuthentication(new CookieAuthenticationOptions(){
+                	AuthenticationScheme = "CookieAuthentication",
+                    LoginPath = new PathString("/admin/Account/Login"),
+                    AccessDeniedPath = new PathString("/admin/Account/Forbidden/"),
+                    AutomaticAuthenticate = true,
+                    AutomaticChallenge = true
+            });
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
@@ -62,7 +72,7 @@ namespace LeGia
             {
                 routes.MapRoute(
                     name: "areaRoute",
-                    template: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+                    template: "{area:exists}/{controller=Account}/{action=Login}/{id?}");
 
                 routes.MapRoute(
                     name: "default",

@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using LeGia.Areas.Admin.Models;
 using LeGia.Services.IRepository;
 using LeGia.Services.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LeGia.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class CategoryController : Controller
-    {
+    [Authorize]
+    public class CategoryController : Controller{
         private ICategoryRepository _repo;
         public CategoryController(ICategoryRepository repo){
             _repo = repo;
@@ -37,8 +38,7 @@ namespace LeGia.Areas.Admin.Controllers
             }
         }
 
-        public IActionResult New()
-        {
+        public IActionResult New(){
             return View();
         }
 

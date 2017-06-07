@@ -24,8 +24,7 @@ namespace LeGia.ViewComponents
             try
             {
                 var menu = new MenuViewModel();
-                if(SystemVariable.HeadMenu == null){
-                    var headmenuModel = await Task.Factory.StartNew(() => _cateRepo.GetHeadMenu());
+                var headmenuModel = await Task.Factory.StartNew(() => _cateRepo.GetHeadMenu());
                     var headmenu = headmenuModel.Select(h => new HeadMenuViewModel
                     {
                         Id = h.Id,
@@ -34,13 +33,8 @@ namespace LeGia.ViewComponents
                         Orders = h.Orders
                     }).ToList();
                     menu.Heads = headmenu;
-                    SystemVariable.HeadMenu = headmenu;
-                }else{
-                    menu.Heads = SystemVariable.HeadMenu;
-                }
 
-                if(SystemVariable.MenuItem == null){
-                    var menuitemModel = await Task.Factory.StartNew(() => _postRepo.GetMenuItem());
+                var menuitemModel = await Task.Factory.StartNew(() => _postRepo.GetMenuItem());
                     var menuitem = menuitemModel.Select(i => new MenuItemViewModel
                     {
                         Id = i.Id,
@@ -49,13 +43,8 @@ namespace LeGia.ViewComponents
                         CategoryId = i.CategoryId
                     }).ToList();
                     menu.Items = menuitem;
-                    SystemVariable.MenuItem = menuitem;
-                }else{
-                    menu.Items = SystemVariable.MenuItem;
-                }
 
-                if (SystemVariable.Company == null){
-                    var companyModel = await Task.Factory.StartNew(() => _companyRepo.GetCompanyForHome());
+                var companyModel = await Task.Factory.StartNew(() => _companyRepo.GetCompanyForHome());
                     var company = new CompanyViewModel(){
                         Name = companyModel.Name,
                         Address = companyModel.Address,
@@ -65,10 +54,11 @@ namespace LeGia.ViewComponents
                         HotLine = companyModel.HotLine
                     };
                     ViewBag.Company = company;
+
+                    SystemVariable.HeadMenu = headmenu;
+                    SystemVariable.MenuItem = menuitem;
                     SystemVariable.Company = company;
-                }else{
-                    ViewBag.Company = SystemVariable.Company;
-                }
+
                 return View(menu);
             }
             catch{ throw; }

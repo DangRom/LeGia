@@ -22,8 +22,7 @@ namespace LeGia.ViewComponents
             try
             {
                 var menu = new MenuViewModel();
-                if(SystemVariable.HeadMenu == null){
-                    var headmenuModel = await Task.Factory.StartNew(() => _cateRepo.GetHeadMenu());
+                var headmenuModel = await Task.Factory.StartNew(() => _cateRepo.GetHeadMenu());
                     var headmenu = headmenuModel.Select(h => new HeadMenuViewModel{
                         Id = h.Id,
                         Name = h.Name,
@@ -31,13 +30,8 @@ namespace LeGia.ViewComponents
                         Orders = h.Orders
                     }).ToList();
                     menu.Heads = headmenu;
-                    SystemVariable.HeadMenu = headmenu;
-                }else{
-                    menu.Heads = SystemVariable.HeadMenu;
-                }
 
-                if(SystemVariable.MenuItem == null){
-                    var menuitemModel = await Task.Factory.StartNew(() => _postRepo.GetMenuItem());
+                var menuitemModel = await Task.Factory.StartNew(() => _postRepo.GetMenuItem());
                     var menuitem = menuitemModel.Select(i => new MenuItemViewModel
                     {
                         Id = i.Id,
@@ -46,10 +40,6 @@ namespace LeGia.ViewComponents
                         CategoryId = i.CategoryId
                     }).ToList();
                     menu.Items = menuitem;
-                    SystemVariable.MenuItem = menuitem;
-                }else{
-                    menu.Items = SystemVariable.MenuItem;
-                }
                 return View(menu);
             }catch { throw; }
         }

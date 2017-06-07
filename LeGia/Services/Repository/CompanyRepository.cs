@@ -9,14 +9,16 @@ using System.Linq;
 namespace LeGia.Services.Repository{
     public class CompanyRepository : RepositoriesBase<CompanyModel>, ICompanyRepository
     {
-        public CompanyModel GetCompany()
-        {
+        public CompanyModel GetCompany(){
             return db.Query<CompanyModel>("findCompany", null, null, false, null, CommandType.StoredProcedure).SingleOrDefault();
         }
 
-        public CompanyModel GetCompanyForHome()
-        {
+        public CompanyModel GetCompanyForHome(){
             return db.Query<CompanyModel>("getCompanyForHome", null, null, false, null, CommandType.StoredProcedure).SingleOrDefault();
+        }
+
+        public CompanyModel GetAbout(){
+            return db.Query<CompanyModel>("getCompanyAbout", null, null, false, null, CommandType.StoredProcedure).SingleOrDefault();
         }
 
         public void Update(CompanyModel model)

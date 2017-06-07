@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using LeGia.Areas.Admin.Models;
 using LeGia.Services.IRepository;
 using LeGia.Services.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LeGia.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class ImageController : Controller
     {
         private IImageRepository _repo;

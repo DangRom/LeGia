@@ -1,6 +1,6 @@
 @model IEnumerable<LeGia.Models.PostViewModel>
 @{
-    ViewData["Title"] = "danh sach";
+    ViewData["Title"] = "Cty TNHH vận tải Lê Gia - " + @ViewBag.BackLink.Name;
 }
 
 <div class="lg__content">
@@ -17,13 +17,17 @@
                 </div>
                 <div class="lg__content__box ui segment">
                     <div class="lg__content__box__header">
-                        <h1 class="lg__content__box__header__title">Tin tức</h1>
+                        <h1 class="lg__content__box__header__title">@ViewBag.BackLink.Name</h1>
                     </div>
                     <div class="lg__content__box__content">
                         <div class="row">
                             @foreach(var p in Model)
                             {
                                 var plink = "/bai-viet/" + @p.Alias;
+                                if(ViewBag.BackLink.Alias == "gioi-thieu")
+                                {
+                                    plink = "/gioi-thieu/" + @p.Alias;
+                                }
                                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 box__main__article">
                                     <div class="main__article">
                                         <a href="@plink">
@@ -39,7 +43,7 @@
                                 </div>
                             }
                         </div>
-                        <div class="lg__pagination">
+                        <!--<div class="lg__pagination">
                             <div class="ui buttons">
                                 <button class="ui button lg__pagination__item lg__pagination__item__active">1</button>
                                 <button class="ui button lg__pagination__item">2</button>
@@ -47,7 +51,7 @@
                                 <button class="ui button lg__pagination__item">...</button>
                                 <button class="ui button lg__pagination__item">6</button>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>

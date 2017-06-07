@@ -10,10 +10,12 @@ namespace LeGia.Controllers{
     public class PostController : Controller{
         private ICategoryRepository _cateRepo;
         private IPostRepository _postRepo;
+        private ICompanyRepository _companyRepo;
 
-        public PostController(ICategoryRepository cateRepo, IPostRepository postRepo){
+        public PostController(ICategoryRepository cateRepo, IPostRepository postRepo, ICompanyRepository companyRepo){
             _cateRepo = cateRepo;
             _postRepo = postRepo;
+            _companyRepo = companyRepo;
         }
 
         [RouteAttribute("/danh-sach/{alias}")]
@@ -66,6 +68,17 @@ namespace LeGia.Controllers{
             catch{
                 return View("error");
             }
+        }
+
+        [Route("/gioi-thieu")]
+        public async Task<IActionResult> AboutOne(){
+            try{
+                var aboutModel = await Task.Factory.StartNew(() => _companyRepo.GetAbout());
+                var about = new CompanyViewModel(){
+                    About = aboutModel.About
+                };
+                return View(about);
+            }catch{ return View("error");}
         }
 
         private BacklinkViewModel GetBackLinkCategory(string alias){

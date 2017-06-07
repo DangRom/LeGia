@@ -6,5 +6,6 @@ namespace LeGia.Services.IRepository{
         CompanyModel GetCompany();
         void Update(CompanyModel model);
         CompanyModel GetCompanyForHome();
+        CompanyModel GetAbout();
     }
 }

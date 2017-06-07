@@ -21,8 +21,7 @@ namespace LeGia.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(){
             try{
                 var footer = new FooterViewModel();
-                if(SystemVariable.Company == null){
-                    var companyModel = await Task.Factory.StartNew(() => _companyRepo.GetCompanyForHome());
+                var companyModel = await Task.Factory.StartNew(() => _companyRepo.GetCompanyForHome());
                     var company = new CompanyViewModel(){
                         Name = companyModel.Name,
                         Address = companyModel.Address,
@@ -32,24 +31,14 @@ namespace LeGia.ViewComponents
                         HotLine = companyModel.HotLine
                     };
                     footer.Company = company;
-                    SystemVariable.Company = company;
-                }else{
-                    footer.Company = SystemVariable.Company;
-                }
 
-                if(SystemVariable.MenuItem == null){
-                    var menuitemModel = await Task.Factory.StartNew(() => _postRepo.GetPostForFooter());
+                var menuitemModel = await Task.Factory.StartNew(() => _postRepo.GetPostForFooter());
                     var services = menuitemModel.Select(s => new MenuItemViewModel{
                         Id = s.Id,
                         Name = s.Name,
                         Alias = s.Alias
                     }).ToList();
-                    footer.Service = services;
-                }else{
-                    var cate = SystemVariable.HeadMenu.Where(c => c.Orders == 3).FirstOrDefault().Id;
-                    var services = SystemVariable.MenuItem.Where(s => s.CategoryId == cate).Take(4).ToList();
-                    footer.Service = services;
-                }
+                footer.Service = services;
 
                 return View(footer);
             }catch{throw;}
