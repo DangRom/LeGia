@@ -82,6 +82,7 @@ namespace LeGia.Services.Repository{
             para.Add("pImage", model.Image, DbType.String, ParameterDirection.Input);
             para.Add("pCategoryId", model.CategoryId, DbType.Int32, ParameterDirection.Input);
             para.Add("pActivated", model.Activated, DbType.Boolean, ParameterDirection.Input);
+            para.Add("pShortContent", model.ShortContent, DbType.String, ParameterDirection.Input);
             para.Add("pContent", model.Content, DbType.String, ParameterDirection.Input);
             return para;
         }

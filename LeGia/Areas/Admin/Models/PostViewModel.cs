@@ -14,6 +14,9 @@ namespace LeGia.Areas.Admin.Models
         public int CategoryId {get; set;}
         public string CategoryName {get;set;}
         public bool Activated {get; set;}
+        [Required(ErrorMessage = "Không được bỏ trống")]
+        [MaxLength(255, ErrorMessage = "Không được dài quá 255 ký tự")]
+        public string ShortContent { get; set; }
         public string Content {get; set;}
     }
 }

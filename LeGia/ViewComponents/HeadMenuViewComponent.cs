@@ -40,6 +40,10 @@ namespace LeGia.ViewComponents
                         CategoryId = i.CategoryId
                     }).ToList();
                     menu.Items = menuitem;
+                    
+                SystemVariable.HeadMenu = headmenu;
+                SystemVariable.MenuItem = menuitem;
+
                 return View(menu);
             }catch { throw; }
         }

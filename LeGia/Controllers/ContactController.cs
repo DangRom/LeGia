@@ -18,7 +18,7 @@ namespace LeGia.Controllers{
         [RouteAttribute("/lien-he")]
         public ActionResult Index(){
             try{
-                ViewBag.Company = GetCompanyInfo();
+                ViewBag.Company = GetCompanyInfo().Result;
                 return View();
             }
             catch{

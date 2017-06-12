@@ -67,6 +67,7 @@ namespace LeGia.Areas.Admin.Controllers
                             Image = post.Image,
                             CategoryId = post.CategoryId,
                             Activated = post.Activated,
+                            ShortContent = post.ShortContent,
                             Content = post.Content
                         };
                         _postRepo.Insert(model);
@@ -93,6 +94,7 @@ namespace LeGia.Areas.Admin.Controllers
                     Image = model.Image,
                     CategoryId = model.CategoryId,
                     Activated = model.Activated,
+                    ShortContent = model.ShortContent,
                     Content = model.Content
                 };
                 return View(post);
@@ -114,6 +116,7 @@ namespace LeGia.Areas.Admin.Controllers
                         Image = post.Image,
                         CategoryId = post.CategoryId,
                         Activated = post.Activated,
+                        ShortContent = post.ShortContent,
                         Content = post.Content
                     };
                     _postRepo.Update(model);
