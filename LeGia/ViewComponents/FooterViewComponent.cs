@@ -1,10 +1,7 @@
 ﻿using LeGia.Services.IRepository;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LeGia.Commons;
 using LeGia.Models;
 
 namespace LeGia.ViewComponents

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using LeGia.Services.InfactStructure;
 using LeGia.Services.IRepository;
@@ -6,7 +5,8 @@ using LeGia.Services.Model;
 using System.Data;
 using Dapper;
 
-namespace LeGia.Services.Repository{
+namespace LeGia.Services.Repository
+{
     public class ContactRepository : RepositoriesBase<ContactModel>, IContactRepository
     {
         public void DeleteContact(int id){

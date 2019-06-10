@@ -1,13 +1,12 @@
-using System;
 using LeGia.Services.InfactStructure;
 using LeGia.Services.IRepository;
 using LeGia.Services.Model;
 using Dapper;
 using System.Data;
-using System.Linq;
 using System.Collections.Generic;
 
-namespace LeGia.Services.Repository{
+namespace LeGia.Services.Repository
+{
     public class ImageRepository : RepositoriesBase<ImageModel>, IImageRepository
     {
         public bool CheckName(string name)

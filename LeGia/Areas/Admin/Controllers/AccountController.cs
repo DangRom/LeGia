@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using LeGia.Areas.Admin.Models;
 using LeGia.Services.IRepository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using LeGia.Areas.Controllers;
 
 namespace LeGia.Areas.Admin.Controllers{
     [AreaAttribute("Admin")]
@@ -20,7 +23,7 @@ namespace LeGia.Areas.Admin.Controllers{
             return View();
         }
 
-        [HttpPostAttribute]
+        [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel login){
             try{
                 if(ModelState.IsValid){
@@ -28,10 +31,13 @@ namespace LeGia.Areas.Admin.Controllers{
                         var claim = new List<Claim>{
                             new Claim(ClaimTypes.Name, login.UserName)
                         };
-                        var userIdentity = new ClaimsIdentity(claim, "login");
+                        var userIdentity = new ClaimsIdentity(claim, CookieAuthenticationDefaults.AuthenticationScheme);
                         ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
-                        await HttpContext.Authentication.SignInAsync("CookieAuthentication", principal);
-                        return Redirect("/Admin/Dashboard/Index");
+                        await HttpContext.SignInAsync(
+                            CookieAuthenticationDefaults.AuthenticationScheme,
+                            principal);
+                        //return Redirect("/Admin/Dashboard/Index");
+                        return RedirectToAction("Index", "Dashboard");
                     }   
                     ModelState.AddModelError("", "Sai user hoac password");
                     return View(login);
@@ -43,11 +49,13 @@ namespace LeGia.Areas.Admin.Controllers{
             }
         }
 
+        [HttpGet]
         public async Task<IActionResult> LogOut(){
-            await HttpContext.Authentication.SignOutAsync("CookieAuthentication");
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 	        return Redirect("/admin");
         }
 
+        [HttpGet]
         public IActionResult ChangePassword(){
             var logineduser = HttpContext.User;
             var user = new ChangePasswordViewModel(){
@@ -56,7 +64,7 @@ namespace LeGia.Areas.Admin.Controllers{
             return View(user);
         }
 
-        [HttpPostAttribute]
+        [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel changepass){
             try{
                 if(ModelState.IsValid){

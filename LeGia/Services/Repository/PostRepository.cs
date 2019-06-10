@@ -2,12 +2,11 @@ using LeGia.Services.InfactStructure;
 using LeGia.Services.IRepository;
 using LeGia.Services.Model;
 using System.Data;
-using System.Linq;
 using Dapper;
-using System;
 using System.Collections.Generic;
 
-namespace LeGia.Services.Repository{
+namespace LeGia.Services.Repository
+{
     public class PostRepository : RepositoriesBase<PostModel>, IPostRepository{
         public bool CheckName(string name){
             var para = new DynamicParameters();

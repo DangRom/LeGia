@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LeGia.Services.IRepository;
+﻿using LeGia.Services.IRepository;
 using LeGia.Services.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace LeGia
 {
@@ -33,6 +31,20 @@ namespace LeGia
             // Add framework services.
             services.AddMvc();
 
+            services.AddAuthentication(authen =>
+            {
+                authen.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                authen.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                authen.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                authen.DefaultSignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                authen.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, cookie =>
+            {
+                cookie.LoginPath = new PathString("/admin/Account/Login");
+                cookie.AccessDeniedPath = new PathString("/admin/Account/Forbidden/");
+                cookie.ExpireTimeSpan = TimeSpan.FromHours(1);
+            });
+
             //dependences
             services.AddSingleton<ICompanyRepository, CompanyRepository>();
             services.AddSingleton<ICategoryRepository, CategoryRepository>();
@@ -45,17 +57,6 @@ namespace LeGia
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseCookieAuthentication(new CookieAuthenticationOptions(){
-                	AuthenticationScheme = "CookieAuthentication",
-                    LoginPath = new PathString("/admin/Account/Login"),
-                    AccessDeniedPath = new PathString("/admin/Account/Forbidden/"),
-                    AutomaticAuthenticate = true,
-                    AutomaticChallenge = true
-            });
-
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -65,6 +66,8 @@ namespace LeGia
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseAuthentication();
 
             app.UseStaticFiles();
 

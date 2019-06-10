@@ -1,4 +1,3 @@
-using System;
 using LeGia.Services.InfactStructure;
 using LeGia.Services.IRepository;
 using LeGia.Services.Model;
@@ -7,7 +6,8 @@ using System.Linq;
 using Dapper;
 using System.Collections.Generic;
 
-namespace LeGia.Services.Repository{
+namespace LeGia.Services.Repository
+{
     public class CategoryRepository : RepositoriesBase<CategoryModel>, ICategoryRepository
     {
         public bool CheckName(string name)

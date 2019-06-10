@@ -1,8 +1,8 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LeGia.Models;
 
-namespace LeGia.ViewComponents{
+namespace LeGia.ViewComponents
+{
     [ViewComponentAttribute(Name = "Contact")]
     public class ContactViewComponent : ViewComponent{
         public ContactViewComponent(){}

@@ -1,11 +1,11 @@
-using System;
 using LeGia.Services.InfactStructure;
 using LeGia.Services.IRepository;
 using LeGia.Services.Model;
 using System.Data;
 using Dapper;
 
-namespace LeGia.Services.Repository{
+namespace LeGia.Services.Repository
+{
     public class UserRepository : RepositoriesBase<UserModel>, IUserRepository
     {
         public void ChangePass(string username, string password)

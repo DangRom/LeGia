@@ -1,4 +1,3 @@
-using System;
 using LeGia.Services.InfactStructure;
 using LeGia.Services.IRepository;
 using LeGia.Services.Model;
@@ -6,7 +5,8 @@ using System.Data;
 using Dapper;
 using System.Linq;
 
-namespace LeGia.Services.Repository{
+namespace LeGia.Services.Repository
+{
     public class CompanyRepository : RepositoriesBase<CompanyModel>, ICompanyRepository
     {
         public CompanyModel GetCompany(){

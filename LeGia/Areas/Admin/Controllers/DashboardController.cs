@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using LeGia.Areas.Admin.Models;
 using LeGia.Services.IRepository;
 using LeGia.Services.Model;
@@ -19,6 +16,7 @@ namespace LeGia.Areas.Controllers
             _repo = repo;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             try{
@@ -39,7 +37,7 @@ namespace LeGia.Areas.Controllers
             }
         }
 
-        [HttpPostAttribute]
+        [HttpPost]
         public IActionResult Index(CompanyViewModel company){
             try{
                 if (ModelState.IsValid)

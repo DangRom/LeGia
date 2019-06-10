@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
 using LeGia.Services.IRepository;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using LeGia.Models;
 using System.Collections.Generic;
 
-namespace LeGia.ViewComponents{
+namespace LeGia.ViewComponents
+{
     [ViewComponentAttribute(Name = "Slide")]
     public class SlideViewComponent : ViewComponent{
         private IImageRepository _imageRepo;
