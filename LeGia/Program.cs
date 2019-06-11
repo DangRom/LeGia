@@ -13,7 +13,6 @@ namespace LeGia
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
-                .UseUrls("http://*:80")
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()

@@ -4,12 +4,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Net;
 
 namespace LeGia
 {
@@ -32,11 +30,6 @@ namespace LeGia
         {
             // Add framework services.
             services.AddMvc();
-
-            services.Configure<ForwardedHeadersOptions>(options =>
-            {
-                options.KnownProxies.Add(IPAddress.Parse("103.221.223.50"));
-            });
 
             services.AddAuthentication(authen =>
             {
@@ -73,11 +66,6 @@ namespace LeGia
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
 
             app.UseAuthentication();
 
