@@ -1,21 +1,21 @@
 @model IEnumerable<LeGia.Models.SlideViewModel>
 
 <div class="slider">
-            <div id="wowslider-container1">
-                <div class="ws_images">
-                            <ul>
-                                @foreach(var s in Model)
-                                {
-                                    <li>
-                                        <a href="#">
-                                            <img src="@s.Image" />
-                                        </a>
-                                    </li>
-                                }
-                            </ul>
-                        </div>
-                        <div class="ws_shadow"></div>
-                </div>
-                <script type="text/javascript" src="~/client/engine1/wowslider.js"></script>
-                <script type="text/javascript" src="~/client/engine1/script.js"></script>
-            </div>
+    <div id="wowslider-container1">
+        <div class="ws_images">
+            <ul>
+                @foreach (var s in Model)
+                {
+                    <li>
+                        <a href="#">
+                            <img src="@s.Image" />
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="ws_shadow"></div>
+    </div>
+    <script type="text/javascript" src="~/client/engine1/wowslider.js"></script>
+    <script type="text/javascript" src="~/client/engine1/script.js"></script>
+</div>
