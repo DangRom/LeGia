@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 using LeGia.Commons;
+using log4net;
+using System;
 
 namespace LeGia.ViewComponents
 {
@@ -12,7 +14,10 @@ namespace LeGia.ViewComponents
         private ICategoryRepository _cateRepo;
         private IPostRepository _postRepo;
         private ICompanyRepository _companyRepo;
-        public MobileMenuViewComponent(ICategoryRepository cateRepo, IPostRepository postRepo, ICompanyRepository companyRepo){
+        private readonly ILog _logger = LogManager.GetLogger(typeof(MobileMenuViewComponent));
+
+        public MobileMenuViewComponent(ICategoryRepository cateRepo, IPostRepository postRepo, ICompanyRepository companyRepo)
+        {
             _cateRepo = cateRepo;
             _postRepo = postRepo;
             _companyRepo = companyRepo;
@@ -59,7 +64,11 @@ namespace LeGia.ViewComponents
 
                 return View(menu);
             }
-            catch{ throw; }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
         }
     }
 }

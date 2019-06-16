@@ -1,14 +1,21 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using LeGia.Models;
 using LeGia.Services.IRepository;
+using log4net;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LeGia.ViewComponents{
     [ViewComponentAttribute(Name = "TopNews")]
     public class TopNewsViewComponent: ViewComponent{
         private IPostRepository _postRepo;
-        public TopNewsViewComponent(IPostRepository postRepo) => _postRepo = postRepo;
+        private readonly ILog _logger = LogManager.GetLogger(typeof(TopNewsViewComponent));
+
+        public TopNewsViewComponent(IPostRepository postRepo)
+        {
+            _postRepo = postRepo;
+        }
 
         public async Task<IViewComponentResult> InvokeAsync(){
             try{
@@ -21,7 +28,12 @@ namespace LeGia.ViewComponents{
                     Image = t.Image
                 }).ToList();
                 return View(topnews);
-            }catch{throw;}
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
         }
     }
 }

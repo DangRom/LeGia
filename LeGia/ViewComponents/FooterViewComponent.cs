@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 using LeGia.Models;
+using log4net;
+using System;
 
 namespace LeGia.ViewComponents
 {
@@ -10,7 +12,10 @@ namespace LeGia.ViewComponents
     public class FooterViewComponent : ViewComponent{
         private ICompanyRepository _companyRepo;
         private IPostRepository _postRepo;
-        public FooterViewComponent(ICompanyRepository companyRepo, IPostRepository postRepo){
+        private readonly ILog _logger = LogManager.GetLogger(typeof(FooterViewComponent));
+
+        public FooterViewComponent(ICompanyRepository companyRepo, IPostRepository postRepo)
+        {
             _companyRepo = companyRepo;
             _postRepo = postRepo;
         }
@@ -38,7 +43,11 @@ namespace LeGia.ViewComponents
                 footer.Service = services;
 
                 return View(footer);
-            }catch{throw;}
+            } catch (Exception ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
         }
     }
 }

@@ -67,6 +67,8 @@ namespace LeGia
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            //loggerFactory.AddLog4Net();
+
             app.UseAuthentication();
 
             app.UseStaticFiles();

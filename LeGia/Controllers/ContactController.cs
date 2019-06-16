@@ -5,11 +5,14 @@ using LeGia.Services.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using LeGia.Services.Model;
 using System;
+using log4net;
 
 namespace LeGia.Controllers{
     public class ContactController: Controller{
         private IContactRepository _contactRepo;
         private ICompanyRepository _companyRepo;
+        private readonly ILog _logger = LogManager.GetLogger(typeof(ContactController));
+
         public ContactController(IContactRepository contactRepo, ICompanyRepository companyRepo){
             _contactRepo = contactRepo;
             _companyRepo = companyRepo;
@@ -21,7 +24,8 @@ namespace LeGia.Controllers{
                 ViewBag.Company = GetCompanyInfo().Result;
                 return View();
             }
-            catch{
+            catch (Exception ex){
+                _logger.Error(ex.Message);
                 return View("Error");
             }
         }
@@ -44,6 +48,7 @@ namespace LeGia.Controllers{
                 return View(contact);
             }
             catch(Exception ex){
+                _logger.Error(ex.Message);
                 ModelState.AddModelError("", ex.Message);
                 return View(contact);
             }

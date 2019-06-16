@@ -3,12 +3,18 @@ using LeGia.Services.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using LeGia.Models;
+using System;
+using log4net;
 
 namespace LeGia.ViewComponents{
     [ViewComponentAttribute(Name = "PostHome")]
     public class PostHomeViewComponent : ViewComponent{
         private IPostRepository _postRepo;
-        public PostHomeViewComponent(IPostRepository postRepo) => _postRepo = postRepo;
+        private readonly ILog _logger = LogManager.GetLogger(typeof(PostHomeViewComponent));
+
+        public PostHomeViewComponent(IPostRepository postRepo) {
+            _postRepo = postRepo;
+        }
 
         public async Task<IViewComponentResult> InvokeAsync(){
             try{
@@ -24,7 +30,12 @@ namespace LeGia.ViewComponents{
                 ViewBag.Primary = posts[0];
                 posts.Remove(ViewBag.Primary);
                 return View(posts);
-            }catch{throw;}
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
         }
     }
 }

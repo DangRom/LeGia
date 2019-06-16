@@ -5,12 +5,14 @@ using LeGia.Models;
 using System.Threading.Tasks;
 using System;
 using LeGia.Commons;
+using log4net;
 
 namespace LeGia.Controllers{
     public class PostController : Controller{
         private ICategoryRepository _cateRepo;
         private IPostRepository _postRepo;
         private ICompanyRepository _companyRepo;
+        private readonly ILog _logger = LogManager.GetLogger(typeof(PostController));
 
         public PostController(ICategoryRepository cateRepo, IPostRepository postRepo, ICompanyRepository companyRepo){
             _cateRepo = cateRepo;
@@ -31,7 +33,8 @@ namespace LeGia.Controllers{
                 }).ToList();
                 ViewBag.BackLink = GetBackLinkCategory(alias);
                 return View(post);
-            }catch{
+            }catch (Exception ex){
+                _logger.Error(ex.Message);
                 return View("Error");
             }
         }
@@ -48,7 +51,10 @@ namespace LeGia.Controllers{
                 };
                 ViewBag.BackLink = GetBackLinkPost(alias);
                 return View(post);
-            }catch{
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.Message);
                 return View("Error");
             }
         }
@@ -65,8 +71,10 @@ namespace LeGia.Controllers{
                 };
                 return View(post);
             }
-            catch{
-                return View("error");
+            catch (Exception ex)
+            {
+                _logger.Error(ex.Message);
+                return View("Error");
             }
         }
 
@@ -78,7 +86,12 @@ namespace LeGia.Controllers{
                     About = aboutModel.About
                 };
                 return View(about);
-            }catch{ return View("error");}
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.Message);
+                return View("Error");
+            }
         }
 
         private BacklinkViewModel GetBackLinkCategory(string alias){

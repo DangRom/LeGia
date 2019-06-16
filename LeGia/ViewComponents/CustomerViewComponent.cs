@@ -3,12 +3,16 @@ using LeGia.Services.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using LeGia.Models;
+using System;
+using log4net;
 
 namespace LeGia.ViewComponents{
     [ViewComponentAttribute(Name = "Customer")]
     public class CustomerViewComponent : ViewComponent{
         private IImageRepository _imageRepo;
-        public CustomerViewComponent(IImageRepository imageRepo){
+        private readonly ILog _logger = LogManager.GetLogger(typeof(CustomerViewComponent));
+        public CustomerViewComponent(IImageRepository imageRepo)
+        {
             _imageRepo = imageRepo;
         }
 
@@ -22,7 +26,10 @@ namespace LeGia.ViewComponents{
                     Image = c.Image
                 }).ToList();
                 return View(customer);
-            }catch{throw;}
+            } catch(Exception ex) {
+                _logger.Error(ex.Message);
+                throw;
+            }
         }
     }
 }
